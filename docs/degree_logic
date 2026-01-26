@@ -1,0 +1,50 @@
+#given these courses, what order can and should a student take them?
+
+
+CSU East Bay
+
+CSUEB Computer Science (Lower Division)
+
+
+## Classes needed to fulfill lower-div course list
+(requires GE Area B4 to be successfully completed with a C- or better to start the program [bottom line requirement]
+- CS 101 Computer Science I 
+- CS 201 Computer Science II
+- CS 211 Discrete Structures
+- CS 221 Computer Organization & Assembly Language
+- CS 230 Computing & Responsibility
+
+## Rules
+
+- GE Area B4 (Math 130 Calculus I) must be successfully completed w/C- or better to start CS 101 (Computer Science I) & CS 211 (Discrete Structures)
+
+- CS 101 (Computer Science I) must be successfully completed w/C- or better to start CS 201 (Computer Science II) and CS 221 (Computer Organization & Assembly Language)
+
+- CS 101 (Computer Science I) can be taken with CS 211 (Discrete Structures)
+- CS 101 (Computer Science I) can be taken with CS 230 (Computing & Responsibility)
+
+- CS 211 (Discrete Structures) can be taken with CS 101(Computer Science I)
+- CS 211 (Discrete Structures can be taken with CS 230 (Computing & Responsibility)
+
+- CS 230 (Computing & Responsibility) can be taken with CS 101 (Computer Science I)
+- CS 230 (Computing & Responsibility) can be taken with CS 211 (Discrete Structures)
+
+- CS 201 (Computer Science II) can be taken with CS 211 (Discrete Structures)
+- CS 201 (Computer Science II) can be taken with CS 230 (Computing & Responsibility)
+- CS 201 (Computer Science II) can be taken with CS 221 (CS 221 Computer Organization & Assembly Language)
+
+
+## Hard Prerequisites (Must have system enforced)
+- Student must have successfully completed GE Area B4 (Math 130 Calculus I) to be able to enroll in CS 101
+-
+
+
+
+## Soft Constraints (Guidance)
+-
+
+
+
+## Concurrency Rules (What can be taken together)
+-
+

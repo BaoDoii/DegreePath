@@ -1,3 +1,8 @@
+CSU East Bay
+Major: Computer Science
+
+Lower Division Courses:
+
 CS 101 – Computer Science I
 Units: 4
 Prerequisites: Math/QR Placement (GE B4) or equivalent
