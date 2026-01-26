@@ -15,7 +15,6 @@ CSUEB Computer Science (Lower Division)
 - CS 230 Computing & Responsibility
 
 ## Rules
-
 - GE Area B4 (Math 130 Calculus I) must be successfully completed w/C- or better to start CS 101 (Computer Science I) & CS 211 (Discrete Structures)
 
 - CS 101 (Computer Science I) must be successfully completed w/C- or better to start CS 201 (Computer Science II) and CS 221 (Computer Organization & Assembly Language)
@@ -31,14 +30,19 @@ CSUEB Computer Science (Lower Division)
 
 - CS 201 (Computer Science II) can be taken with CS 211 (Discrete Structures)
 - CS 201 (Computer Science II) can be taken with CS 230 (Computing & Responsibility)
-- CS 201 (Computer Science II) can be taken with CS 221 (CS 221 Computer Organization & Assembly Language)
+- CS 201 (Computer Science II) can be taken with CS 221 (Computer Organization & Assembly Language)
+
+- CS 221 (Computer Organization & Assembly Language) can be taken with CS 201 (Computer Science II
+- CS 221 (Computer Organization & Assembly Language) can be taken with CS 211 (Discrete Structures)
+- CS 221 (Computer Organization & Assembly Language) can be taken with CS 230 (Computing & Responsibility)
 
 
 ## Hard Prerequisites (Must have system enforced)
-- Student must have successfully completed GE Area B4 (Math 130 Calculus I) to be able to enroll in CS 101
--
-
-
+- CS 101 (Computer Science I) -> requires GE Area B4 (Math 130 Calculus I)
+- CS 201 (Computer Science II) -> requires CS 101
+- CS 211 (Discrete Structures) -> requires GE Area B4 (Math 130 Calculus I)
+- CS 221 Computer Organization & Assembly Language -> requires CS 101
+- CS 230 Computing & Responsibility -> no requirements
 
 ## Soft Constraints (Guidance)
 -
@@ -46,5 +50,17 @@ CSUEB Computer Science (Lower Division)
 
 
 ## Concurrency Rules (What can be taken together)
--
+- CS 101 (Computer Science I) & CS 211 (Discrete Structures) may be taken together
+- CS 101 (Computer Science I) & CS 230 (Computing & Responsibility) may be taken together
+
+- CS 211 (Discrete Structures) & CS 201 (Computer Science II) may be taken together
+- CS 211 (Discrete Structures) & CS 221 (Computer Organization & Assembly Language) may be taken together
+- CS 211 (Discrete Structures) & CS 230 (Computing & Responsibility) may be taken together
+
+- CS 221 (Computer Organization & Assembly Language) & CS 201 (Computer Science II) may be taken together
+- CS 221 (Computer Organization & Assembly Language) & CS 230 (Computing & Responsibility) may be taken together
+
+- CS 230 (Computing & Responsibility) may be taken with any classes (Flexible since no requirement)
+
+
 
