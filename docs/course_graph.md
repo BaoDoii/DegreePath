@@ -2,7 +2,7 @@
 
 - Units: 4
 - Category : Programming
-- Workload : Medium/Heavy
+- Workload : Heavy
 - Prerequisites: Math 130 (GE Area G4)
 - Can be taken with: CS 211, CS 230
 
@@ -18,7 +18,7 @@
 
 - Units: 4
 - Category: Mathematics
-- Workload: Heavy (I think?)
+- Workload: Medium/Heavy
 - Prerequisites: Math 130 (GE Area G4)
 - Can be taken with: CS 101, CS 201, CS 221, CS 230
 
