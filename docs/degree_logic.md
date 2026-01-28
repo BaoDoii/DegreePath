@@ -1,73 +1,103 @@
-#given these courses, what order can and should a student take them?
+# Degree Logic – CSUEB Computer Science (Lower Division)
 
+This document defines the **academic rules and guidance** for planning the
+lower-division Computer Science coursework at CSU East Bay.
 
-CSU East Bay
+It does **not** prescribe a fixed semester-by-semester schedule.
+Instead, it separates **hard constraints** (must be enforced)
+from **soft constraints** (recommended guidance) that a planner or AI
+can reason over.
 
-CSUEB Computer Science (Lower Division)
+---
 
-## Rules
-- GE Area B4 (Math 130 Calculus I) must be successfully completed w/C- or better to start CS 101 (Computer Science I) & CS 211 (Discrete Structures)
+## Scope
 
-- CS 101 (Computer Science I) must be successfully completed w/C- or better to start CS 201 (Computer Science II) and CS 221 (Computer Organization & Assembly Language)
+- School: California State University, East Bay
+- Major: Computer Science
+- Level: Lower Division
+- Assumption: Student has **completed or will complete Math 130 (Calculus I)**
+  before beginning lower-division CS coursework.
 
-- CS 101 (Computer Science I) can be taken with CS 211 (Discrete Structures)
-- CS 101 (Computer Science I) can be taken with CS 230 (Computing & Responsibility)
+---
 
-- CS 211 (Discrete Structures) can be taken with CS 101(Computer Science I)
-- CS 211 (Discrete Structures can be taken with CS 230 (Computing & Responsibility)
+## Courses Covered
 
-- CS 230 (Computing & Responsibility) can be taken with CS 101 (Computer Science I)
-- CS 230 (Computing & Responsibility) can be taken with CS 211 (Discrete Structures)
+- CS 101 – Computer Science I
+- CS 201 – Computer Science II
+- CS 211 – Discrete Structures
+- CS 221 – Computer Organization & Assembly Language
+- CS 230 – Computing & Social Responsibility
 
-- CS 201 (Computer Science II) can be taken with CS 211 (Discrete Structures)
-- CS 201 (Computer Science II) can be taken with CS 230 (Computing & Responsibility)
-- CS 201 (Computer Science II) can be taken with CS 221 (Computer Organization & Assembly Language)
+---
 
-- CS 221 (Computer Organization & Assembly Language) can be taken with CS 201 (Computer Science II
-- CS 221 (Computer Organization & Assembly Language) can be taken with CS 211 (Discrete Structures)
-- CS 221 (Computer Organization & Assembly Language) can be taken with CS 230 (Computing & Responsibility)
+## Hard Prerequisites (System-Enforced Rules)
 
+These rules must **never be violated** by the planner.
 
-## Hard Prerequisites (Must have system enforced)
-- CS 101 (Computer Science I) -> requires GE Area B4 (Math 130 Calculus I)
-- CS 201 (Computer Science II) -> requires CS 101
-- CS 211 (Discrete Structures) -> requires GE Area B4 (Math 130 Calculus I)
-- CS 221 Computer Organization & Assembly Language -> requires CS 101
-- CS 230 Computing & Responsibility -> no requirements
+- **CS 101 (Computer Science I)**
+  - Requires: GE Area B4 completion (Math 130 Calculus I or equivalent)
 
-## Soft Constraints (Guidance)
-- CS 101 should be taken as soon as Math 130 is completed. Pair it with CS 230 (light course) or a GE course to balance the semester.
-- CS 211 (Discrete Structures) is math-heavy and theory-intensive. Pair with CS 230 or a light GE in the semester it’s taken. Avoid pairing with CS 201 in the same semester for an average workload.
-- CS 201 (Computer Science II) is programming-intensive. Best paired with CS 230 or a GE to reduce total workload in the semester. Avoid pairing with other programming-heavy courses like CS 221 for the same semester if possible.
-- CS 221 (Computer Organization & Assembly Language) is conceptually challenging. Recommended after CS 101 and alongside CS 201 or CS 230 for lighter balance.
-- CS 230 is flexible and light; it can be used to balance heavier technical semesters.
+- **CS 201 (Computer Science II)**
+  - Requires: CS 101 with grade C- or better
 
-- Students should aim to take no more than two programming- or theory-intensive CS courses per semester to avoid overload.
+- **CS 211 (Discrete Structures)**
+  - Requires: Math 130 (Calculus I) with grade C- or better
 
-- For a 4-semester lower division plan, consider spreading courses roughly like:
+- **CS 221 (Computer Organization & Assembly Language)**
+  - Requires: CS 101 with grade C- or better
 
-	Semester 1: Math 130 + GE/light course(s)
+- **CS 230 (Computing & Social Responsibility)**
+  - No prerequisites
 
-	Semester 2: CS 101 + CS 230 + GE/light course
+---
 
-	Semester 3: CS 201 + CS 211 + GE/light course
+## Concurrency Rules (Allowed Pairings)
 
-	Semester 4: CS 221 + remaining GE/light course(s)
+These course combinations are **explicitly allowed**.
 
-(COME BACK TO THIS MAYBE TOUCH UP ENTIRE DEGREE LOGIC SINCE REPETITIVE AND LOOK BACK AT SOFT CONSTRAINTS/ FIX GPT PROMPT ITS DUMB RN)
+- CS 101 may be taken with:
+  - CS 211
+  - CS 230
 
-## Concurrency Rules (What can be taken together)
-- CS 101 (Computer Science I) & CS 211 (Discrete Structures) may be taken together
-- CS 101 (Computer Science I) & CS 230 (Computing & Responsibility) may be taken together
+- CS 211 may be taken with:
+  - CS 101
+  - CS 201
+  - CS 221
+  - CS 230
 
-- CS 211 (Discrete Structures) & CS 201 (Computer Science II) may be taken together
-- CS 211 (Discrete Structures) & CS 221 (Computer Organization & Assembly Language) may be taken together
-- CS 211 (Discrete Structures) & CS 230 (Computing & Responsibility) may be taken together
+- CS 201 may be taken with:
+  - CS 211
+  - CS 221
+  - CS 230
 
-- CS 221 (Computer Organization & Assembly Language) & CS 201 (Computer Science II) may be taken together
-- CS 221 (Computer Organization & Assembly Language) & CS 230 (Computing & Responsibility) may be taken together
+- CS 221 may be taken with:
+  - CS 201
+  - CS 211
+  - CS 230
 
-- CS 230 (Computing & Responsibility) may be taken with any classes (Flexible since no requirement)
+- CS 230 may be taken with:
+  - Any lower-division CS course
 
+---
 
+## Soft Constraints (Advisory Guidance)
+
+These constraints **do not invalidate a schedule**, but are used to
+recommend more balanced and realistic plans.
+
+- Avoid pairing **multiple heavy technical CS courses** in the same semester when possible.
+- **CS 201** is programming-intensive; pairing it with **CS 230 or a GE** is recommended for balance.
+- **CS 211** is math- and theory-heavy; avoid combining it with another theory-heavy course when possible.
+- **CS 221** is conceptually challenging and is best taken after students are comfortable with programming fundamentals.
+- **CS 230** has relatively lighter workload and is well-suited to balance heavy CS semesters.
+- A typical full-time student can complete all lower-division CS coursework within
+  approximately **4 academic semesters after completing Math 130**.
+
+---
+
+## Notes for Future Expansion
+
+- Difficulty ratings may be added later based on aggregated student data.
+- Transfer-specific logic and upper-division dependencies will be handled in separate logic layers.
+- This logic is designed to be machine-readable and extensible.
 
