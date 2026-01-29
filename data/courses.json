@@ -1,0 +1,34 @@
+{
+	"courses":[
+		{
+			"code": "CS101",
+			"name": "Computer Science I",
+			"units": 4,
+			"prerequisites": [],
+			"category": "Programming",
+			"workload": "Heavy",
+			"notes": "Math/QR Placement (GE B4) or equivalent",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS201",
+			"name": "Computer Science II",
+			"units": 4,
+			"prerequisites": ["CS101"],
+			"minGrade": "C-",
+			"category": "Programming",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS211",
+			"name": "Discrete Structures",
+			"units": 4,
+			"prerequisites": [],
+			"category": "Mathematics",
+			"workload": "Medium/Heavy",
+			"notes": "Math/QR Placement (GE B4) or equivalent",
+			"terms": ["Fall", "Spring"]
+		}
+	]
+}
