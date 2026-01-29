@@ -29,6 +29,25 @@
 			"workload": "Medium/Heavy",
 			"notes": "Math/QR Placement (GE B4) or equivalent",
 			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS221",
+			"name": "Computer Organization & Assembly Language",
+			"units": 3,
+			"prerequisites": ["CS101"],
+			"minGrade": "C-",
+			"category": "Programming",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS230",
+			"name": "Computing & Social Responsibility",
+			"units": 3,
+			"prerequisites": [],
+			"category": "Ethics",
+			"workload": "Light/Medium",
+			"terms": ["Fall", "Spring"]
 		}
 	]
 }
