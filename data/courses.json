@@ -4,10 +4,10 @@
 			"code": "CS101",
 			"name": "Computer Science I",
 			"units": 4,
-			"prerequisites": [],
+			"prerequisites": ["MATH130"],
+			"minGrade": "C-",
 			"category": "Programming",
 			"workload": "Heavy",
-			"notes": "Math/QR Placement (GE B4) or equivalent",
 			"terms": ["Fall", "Spring"]
 		},
 		{
@@ -24,10 +24,10 @@
 			"code": "CS211",
 			"name": "Discrete Structures",
 			"units": 4,
-			"prerequisites": [],
+			"prerequisites": ["MATH130"],
+			"minGrade": "C-",
 			"category": "Mathematics",
 			"workload": "Medium/Heavy",
-			"notes": "Math/QR Placement (GE B4) or equivalent",
 			"terms": ["Fall", "Spring"]
 		},
 		{
