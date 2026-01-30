@@ -42,7 +42,7 @@ public class Course {
 		return this.category;
 	}
 	
-	public String getWorkLoad() {
+	public String getWorkload() {
 		return this.workload;
 	}
 	
