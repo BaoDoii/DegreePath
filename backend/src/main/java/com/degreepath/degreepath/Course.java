@@ -3,14 +3,18 @@ package com.degreepath.degreepath;
 import java.util.List;
 
 public class Course {
+	//fields to match JSON structure
 	private String code;
 	private String name;
 	private int units;
-	private String prerequisites[];
+	private List<String> prerequisites;
 	private String minGrade;
 	private String category;
 	private String workload;
-	private String terms;
+	private List<String> terms;
+	
+	//constructor
+	public Course() {}
 	
 	//getters
 	public String getCode() {
@@ -25,14 +29,9 @@ public class Course {
 		return this.units;
 	}
 	
-	public String[] getPrerequisites() {
+	public List<String> getPrerequisites() {
 		
-		String prereq[] = null;
-		for(int i = 0; i < prerequisites.length; i++ ) {
-			prereq[i] += prerequisites[i];
-		}
-		
-		return prereq;
+		return this.prerequisites;
 	}
 	
 	public String getMinGrade() {
@@ -47,13 +46,8 @@ public class Course {
 		return this.workload;
 	}
 	
-	public String[] getTerms() {
-		String termsList[] = null;
-		for(int i = 0; i < terms.length(); i++ ) {
-			termsList[i] += terms[i];
-		}
-		
-		return termsList;
+	public List<String> getTerms() {
+		return this.terms;
 	}
 	
 	//setters
@@ -67,10 +61,13 @@ public class Course {
 	}
 	
 	public void setUnits(int units) {
+		if(units < 1) {
+			throw new IllegalArgumentException("Units can't be 0 or less...");
+		}
 		this.units = units;
 	}
 	
-	public void setPrerequisites(String[] prerequisites) {
+	public void setPrerequisites(List<String> prerequisites) {
 
 		this.prerequisites = prerequisites;
 	}
@@ -87,9 +84,12 @@ public class Course {
 		this.workload = workload;
 	}
 	
-	public void setTerms(String terms) {
+	public void setTerms(List<String> terms) {
 		this.terms = terms;
 	}
 	
 	//toString
+	public String toString() {
+		return code + " - " + name + " (" + units + " units)";
+	}
 }
