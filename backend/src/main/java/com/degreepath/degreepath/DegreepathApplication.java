@@ -49,6 +49,19 @@ CommandLineRunner run() {
 		}
 		
 		System.out.println("Total courses: " + courses.size());
+		
+		//=============TEST PREREQUISITE CHECKING====================
+		System.out.println("\n===TESTING PREREQUISITE CHECKER===");
+		//simulate student who completed math130 and cs101
+		List<String> completedCourses = List.of("MATH130");
+		System.out.println("Student has completed: " + completedCourses);
+		
+		//test each course
+		for(Course course : courses) {
+			boolean canTake = PrerequisiteChecker.canTakeCourse(course, completedCourses);
+			System.out.println(course.getCode() + ": " + (canTake ? " Can Take" : " Cannot take"));
+		}
+		
 	};
 	
 }}
