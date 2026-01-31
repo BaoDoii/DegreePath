@@ -112,7 +112,7 @@ CommandLineRunner run() {
 		System.out.println("\nRecommended Courses:");
 		int totalUnits = 0;
 		for(Course course : semesterPlanner) {
-			System.out.println(" - " + course.getCode() + " : " + course.getName() + " (" + course.getUnits() + " )");
+			System.out.println(" - " + course.getCode() + " : " + course.getName() + " (" + course.getUnits() + " Units)");
 			totalUnits += course.getUnits();
 		}
 		
