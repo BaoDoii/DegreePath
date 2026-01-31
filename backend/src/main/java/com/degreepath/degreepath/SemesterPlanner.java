@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class SemesterPlanner {
 	
 	public static List<Course> generateSemester(List<String> completedCourses, List<Course> allCourses, int maxUnits){
-		List<String> selectedCourses = null;
+		List<Course> selectedCourses = new ArrayList<>();
 		int totalUnits = 0;
 		
 		//printing out completed courses and heading
@@ -22,9 +22,8 @@ public class SemesterPlanner {
 		for(Course course: allCourses) {
 			boolean canTake = PrerequisiteChecker.canTakeCourse(course, completedCourses);
 			if(canTake) {
-				if(totalUnits < maxUnits) {
-				System.out.println("\n- "+ course.getCode() + " (" + course.getUnits() + " Units)");
-				selectedCourses.add(course.getName());
+				if(totalUnits + course.getUnits() <= maxUnits) {
+				selectedCourses.add(course);
 				totalUnits += course.getUnits();
 				}
 			}
@@ -39,6 +38,6 @@ public class SemesterPlanner {
 			}
 		}
 		
-		return new ArrayList<>();
+		return selectedCourses;
 	}
 }
