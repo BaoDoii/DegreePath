@@ -20,15 +20,6 @@ public class SemesterPlanner {
 			}
 		}
 		
-		//cant take courses
-		System.out.println("\n\n Cannot Take:");
-		for(Course course: allCourses) {
-			boolean canTake = PrerequisiteChecker.canTakeCourse(course, completedCourses);
-			if(!canTake) {
-				System.out.println("\n- " + course.getName() + " (Needs " + course.getPrerequisites() +" first");
-			}
-		}
-		
 		return selectedCourses;
 	}
 }
