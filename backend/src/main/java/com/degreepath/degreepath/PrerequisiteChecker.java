@@ -10,6 +10,7 @@ public class PrerequisiteChecker {
 			return true;
 		}
 		for(String prereq: prerequisites) {
+			//if commpleted courses do not contain prereq then return false
 			if(!completedCourses.contains(prereq)) {
 				return false;
 			}
