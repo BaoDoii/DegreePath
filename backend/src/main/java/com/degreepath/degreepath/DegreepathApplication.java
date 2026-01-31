@@ -24,6 +24,43 @@ public class DegreepathApplication {
 @Bean
 CommandLineRunner run() {
 	return args -> {
+		//## Visual Explanation of the Whole Flow
+		//```
+		//Step 1: Create the translator
+		//ObjectMapper mapper = new ObjectMapper();
+//		        ↓
+		//[mapper is ready to convert JSON ↔ Java]
+		//
+		//Step 2: Find the file
+		//InputStream inputStream = getClass().getResourceAsStream("/data/courses.json");
+//		        ↓
+		//[inputStream is pointing to your courses.json file]
+		//
+		//Step 3: Translate JSON → Java
+		//Map<String, List<Course>> data = mapper.readValue(inputStream, new TypeReference<...>() {});
+//		        ↓
+		//[mapper reads the JSON from inputStream]
+//		        ↓
+		//[sees structure: {"courses": [...]}]
+//		        ↓
+		//[creates a Map with key "courses" and value List<Course>]
+//		        ↓
+		//[fills in Course objects using your setters with the Jackson by matching setter functions to strings of value in json,
+		//in general jackson matches json key to setter names, creates Course object using empty constructor since it sees List<Course> in type,
+		//then fills each obj by calling setters w values from json
+//		        ↓
+		//[returns the complete Map]
+		//
+		//Step 4: Extract what we need
+		//List<Course> courses = data.get("courses");
+//		        ↓
+		//[Get the list from the "courses" key]
+		//
+		//Step 5: Use it!
+		//for (Course course : courses) {
+//		    System.out.println(course);
+		//}
+
 		System.out.println("Loading courses from JSON...");
 
 		//object mapper to read json / translate json -> java obj
@@ -62,43 +99,25 @@ CommandLineRunner run() {
 			System.out.println(course.getCode() + ": " + (canTake ? " Can Take" : " Cannot take"));
 		}
 		
+		
+		//=============TEST SEMESTER PLANNER===================
+		System.out.println("\n===SEMESTER PLAN GENERATOR===");
+		List<String> studentCompleted = List.of("MATH130");
+		int maxUnits = 8;
+		
+		List<Course> semesterPlanner = SemesterPlanner.generateSemester(studentCompleted, courses, maxUnits);
+		
+		System.out.println("Completed: " + studentCompleted);
+		System.out.println("Max Units: "+ maxUnits);
+		System.out.println("\nRecommended Courses:");
+		int totalUnits = 0;
+		for(Course course : semesterPlanner) {
+			System.out.println(" - " + course.getCode() + " : " + course.getName() + " (" + course.getUnits() + " )");
+			totalUnits += course.getUnits();
+		}
+		
+		System.out.println("Total units: " + totalUnits);
+		
 	};
 	
 }}
-
-//## Visual Explanation of the Whole Flow
-//```
-//Step 1: Create the translator
-//ObjectMapper mapper = new ObjectMapper();
-//        ↓
-//[mapper is ready to convert JSON ↔ Java]
-//
-//Step 2: Find the file
-//InputStream inputStream = getClass().getResourceAsStream("/data/courses.json");
-//        ↓
-//[inputStream is pointing to your courses.json file]
-//
-//Step 3: Translate JSON → Java
-//Map<String, List<Course>> data = mapper.readValue(inputStream, new TypeReference<...>() {});
-//        ↓
-//[mapper reads the JSON from inputStream]
-//        ↓
-//[sees structure: {"courses": [...]}]
-//        ↓
-//[creates a Map with key "courses" and value List<Course>]
-//        ↓
-//[fills in Course objects using your setters with the Jackson by matching setter functions to strings of value in json,
-//in general jackson matches json key to setter names, creates Course object using empty constructor since it sees List<Course> in type,
-//then fills each obj by calling setters w values from json
-//        ↓
-//[returns the complete Map]
-//
-//Step 4: Extract what we need
-//List<Course> courses = data.get("courses");
-//        ↓
-//[Get the list from the "courses" key]
-//
-//Step 5: Use it!
-//for (Course course : courses) {
-//    System.out.println(course);
-//}

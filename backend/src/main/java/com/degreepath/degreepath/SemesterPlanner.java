@@ -9,16 +9,7 @@ public class SemesterPlanner {
 		List<Course> selectedCourses = new ArrayList<>();
 		int totalUnits = 0;
 		
-		//printing out completed courses and heading
-		System.out.println("=== Semester Plan Test===");
-		System.out.println("\nCompleted Courses: [");
-		for(String completed: completedCourses) {
-			System.out.println(completed + " ");
-		}
-		System.out.println("]\nMax Units: "+ maxUnits);
-		
 		//can take courses, not guided yet but just fixed to add up to max Units for now v1
-		System.out.println("\nCan take:");
 		for(Course course: allCourses) {
 			boolean canTake = PrerequisiteChecker.canTakeCourse(course, completedCourses);
 			if(canTake) {
