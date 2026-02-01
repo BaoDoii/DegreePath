@@ -12,6 +12,30 @@
 	<h1>DegreePath API Test</h1>
 	
 	<h2>Generate Semester Plans</h2>
-	<p>Testing with: Completed Math 130
+	<p>Testing with: Completed Math 130, Max 8 Units</p>
+	<button onclick="testPlan()">GeneratePlan</button>
+	
+	<h3>Result:</h3>
+	<pre id="result">Click button to test...</pre>
+	
+	<script>
+		async function testPlan(){
+			try{
+				const response = await fetch('/api/plan', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json'},
+					body: JSON.stringify({
+						completed: ["MATH130"],
+						maxUnits: 8
+					})
+				});
+				
+				const data =  await response.json();
+				document.getElementById('result').textContent = JSON.stringify(data,null, 2);
+			} catch (error){
+				document.getElementbyId('result').textContent = 'Error: ' + error;
+			})
+		}
+	</script>
 </body>
 </html>
