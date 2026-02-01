@@ -40,19 +40,65 @@ public class PlannerController {
 		return allCourses;
 	}
 	
-	@GetMapping("/plan") //POST  //RequestBody = take Json from POST Request body, covnert it to Map, give back as request paramter
+	@PostMapping("/plan") //POST  //RequestBody = take Json from POST Request body, covnert it to Map, give back as request paramter
 	public Map<String, Object> generatePlan(@RequestBody Map<String, Object> request){
 		//extract the completed courses from request map
-		List<String> completedCourses = request.get("completed");
+		List<String> completedCourses = (List<String>)request.get("completed");
 		//extract map units from request map
-		int maxUnits = request.get("units");
+		int maxUnits = (int) request.get("maxUnits");
 		//call SemesterPlanner to generate plan
 		List<Course> semesterPlan = SemesterPlanner.generateSemester(completedCourses, allCourses, maxUnits);
 		//calculate total units
-		int totalUnits = 
+		int totalUnits = 0;
+		for(Course course: semesterPlan) {
+			totalUnits += course.getUnits();
+		}
 		//build response map to return
+		Map<String, Object> response = Map.of(
+				"courses", semesterPlan,
+				"totalUnits", totalUnits,
+				"completed", completedCourses,
+				"maxUnits", maxUnits
+				);
 		
 		return response;
 	}
+	
+//----visual diagram of /plan
+//List<String> completedCourses = (List<String>) request.get("completed");
+// completedCourses = ["MATH130", "CS101"]
+
+//	int maxUnits = (int) request.get("maxUnits");  // Note: should be "maxUnits" not "units"
+//	// maxUnits = 8
+//	```
+//
+//	---
+//
+//	## Visual Diagram:
+//	```
+//	Student/Frontend
+//	    ↓ (sends JSON)
+//	{
+//	  "completed": ["MATH130"],
+//	  "maxUnits": 8
+//	}
+//	    ↓
+//	@PostMapping("/plan")
+//	    ↓
+//	@RequestBody converts JSON → Map
+//	    ↓
+//	request = {"completed": [...], "maxUnits": 8}
+//	    ↓
+//	You extract: request.get("completed")
+//	    ↓
+//	completedCourses = ["MATH130"]
+//	    ↓
+//	Call: SemesterPlanner.generateSemester(allCourses, completedCourses, 8)
+//	    ↓
+//	Returns: [CS101, CS211]
+//	    ↓
+//	You return JSON response
+//	    ↓
+//	Student/Frontend receives it
 	
 }
