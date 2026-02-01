@@ -33,8 +33,8 @@
 				const data =  await response.json();
 				document.getElementById('result').textContent = JSON.stringify(data,null, 2);
 			} catch (error){
-				document.getElementbyId('result').textContent = 'Error: ' + error;
-			})
+				document.getElementById('result').textContent = 'Error: ' + error;
+			}
 		}
 	</script>
 </body>
