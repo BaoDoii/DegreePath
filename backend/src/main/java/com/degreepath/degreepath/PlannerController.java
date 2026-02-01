@@ -40,4 +40,19 @@ public class PlannerController {
 		return allCourses;
 	}
 	
+	@GetMapping("/plan") //POST  //RequestBody = take Json from POST Request body, covnert it to Map, give back as request paramter
+	public Map<String, Object> generatePlan(@RequestBody Map<String, Object> request){
+		//extract the completed courses from request map
+		List<String> completedCourses = request.get("completed");
+		//extract map units from request map
+		int maxUnits = request.get("units");
+		//call SemesterPlanner to generate plan
+		List<Course> semesterPlan = SemesterPlanner.generateSemester(completedCourses, allCourses, maxUnits);
+		//calculate total units
+		int totalUnits = 
+		//build response map to return
+		
+		return response;
+	}
+	
 }
