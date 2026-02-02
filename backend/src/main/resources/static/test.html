@@ -39,3 +39,33 @@
 	</script>
 </body>
 </html>
+
+<!--
+	## Simplified Mental Model:
+
+	### Sending (Browser → Server):
+	```
+	JavaScript object
+	    ↓ JSON.stringify()
+	JSON string
+	    ↓ send over network
+	Server receives string
+	    ↓ @RequestBody converts
+	Java Map
+	```
+
+	### Receiving (Server → Browser):
+	```
+	Java Map
+	    ↓ Spring Boot converts
+	JSON string
+	    ↓ send over network
+	Browser receives string
+	    ↓ response.json() converts
+	JavaScript object
+	    ↓ JSON.stringify(data, null, 2) for display
+	Pretty JSON string
+	    ↓ show in <pre>
+	User sees it
+-->
+
