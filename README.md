@@ -4,7 +4,8 @@ A course planning system for CSUEB Computer Science students that helps generate
 
 ## 🚀 Live Demo
 
-**[Try it here!](https://degreepath.onrender.com)**
+**[Try it here!](https://degreepath.onrender.com/test.html)**
+**[Home Page](https://degreepath.onrender.com)**
 
 ## 📋 Features
 
