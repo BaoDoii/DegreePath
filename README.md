@@ -95,7 +95,7 @@ cd DegreePath/backend
 
 ## 👤 Author
 
-**Brian Bao**
+**Brian**
 - GitHub: [@BaoDoii](https://github.com/BaoDoii)
 
 ## 📝 License
