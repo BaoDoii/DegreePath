@@ -102,7 +102,7 @@ CommandLineRunner run() {
 		
 		//=============TEST SEMESTER PLANNER===================
 		System.out.println("\n===SEMESTER PLAN GENERATOR===");
-		List<String> studentCompleted = List.of("MATH130");
+		List<String> studentCompleted = List.of("MATH130", "CS101","CS230");
 		int maxUnits = 8;
 		
 		List<Course> semesterPlanner = SemesterPlanner.generateSemester(studentCompleted, courses, maxUnits);
