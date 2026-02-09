@@ -180,6 +180,120 @@
     </div>
 	
 	<script>
+		<script>
+		    let allCourses = [];
+
+		    // Load courses when page loads
+		    async function loadCourses() {
+		        try {
+		            const response = await fetch('/api/courses');
+		            allCourses = await response.json();
+		            displayCheckboxes();
+		        } catch (error) {
+		            console.error('Error loading courses:', error);
+		            alert('Failed to load courses. Please refresh the page.');
+		        }
+		    }
+
+		    // Create checkboxes for each course
+		    function displayCheckboxes() {
+		        const container = document.getElementById('courseCheckboxes');
+		        container.innerHTML = ''; // Clear existing
+
+		        allCourses.forEach(course => {
+		            const div = document.createElement('div');
+		            div.className = 'course-checkbox';
+
+		            const checkbox = document.createElement('input');
+		            checkbox.type = 'checkbox';
+		            checkbox.id = course.code;
+		            checkbox.value = course.code;
+
+		            const label = document.createElement('label');
+		            label.htmlFor = course.code;
+		            label.innerHTML = `
+		                <strong>${course.code}</strong><br>
+		                <small>${course.name} (${course.units} units)</small>
+		            `;
+
+		            div.appendChild(checkbox);
+		            div.appendChild(label);
+		            container.appendChild(div);
+		        });
+		    }
+
+		    // Generate semester plan
+		    async function generatePlan() {
+		        // Get selected courses
+		        const checkboxes = document.querySelectorAll('.course-checkbox input:checked');
+		        const completed = Array.from(checkboxes).map(cb => cb.value);
+
+		        // Get max units
+		        const maxUnits = parseInt(document.getElementById('maxUnits').value);
+
+		        // Validate input
+		        if (maxUnits < 3 || maxUnits > 18) {
+		            alert('Please enter a valid number of units (3-18)');
+		            return;
+		        }
+
+		        try {
+		            // Call API
+		            const response = await fetch('/api/plan', {
+		                method: 'POST',
+		                headers: { 'Content-Type': 'application/json' },
+		                body: JSON.stringify({
+		                    completed: completed,
+		                    maxUnits: maxUnits
+		                })
+		            });
+
+		            const data = await response.json();
+		            displayResults(data);
+		        } catch (error) {
+		            console.error('Error generating plan:', error);
+		            alert('Failed to generate plan. Please try again.');
+		        }
+		    }
+
+		    // Display results
+		    function displayResults(data) {
+		        const resultsSection = document.getElementById('results');
+		        const courseResults = document.getElementById('courseResults');
+		        const summary = document.getElementById('summary');
+
+		        // Clear previous results
+		        courseResults.innerHTML = '';
+
+		        // Show results section
+		        resultsSection.style.display = 'block';
+
+		        // Display courses
+		        if (data.courses.length === 0) {
+		            courseResults.innerHTML = '<p>No courses available based on your selections. Try adjusting your completed courses or unit limit.</p>';
+		        } else {
+		            data.courses.forEach(course => {
+		                const card = document.createElement('div');
+		                card.className = 'course-card';
+		                card.innerHTML = `
+		                    <h3>${course.code} - ${course.name}</h3>
+		                    <p><strong>Units:</strong> ${course.units} | <strong>Workload:</strong> ${course.workload}</p>
+		                    <p><strong>Prerequisites:</strong> ${course.prerequisites.length > 0 ? course.prerequisites.join(', ') : 'None'}</p>
+		                `;
+		                courseResults.appendChild(card);
+		            });
+		        }
+
+		        // Display summary
+		        summary.innerHTML = `Total Units: ${data.totalUnits} / ${data.maxUnits}`;
+
+		        // Scroll to results
+		        resultsSection.scrollIntoView({ behavior: 'smooth' });
+		    }
+
+		    // Load courses when page loads
+		    window.onload = loadCourses;
+		</script>
 	</script>
 	
 </body>
