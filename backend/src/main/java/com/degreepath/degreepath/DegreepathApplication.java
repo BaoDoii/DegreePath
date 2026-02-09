@@ -90,7 +90,7 @@ CommandLineRunner run() {
 		//=============TEST PREREQUISITE CHECKING====================
 		System.out.println("\n===TESTING PREREQUISITE CHECKER===");
 		//simulate student who completed math130 and cs101
-		List<String> completedCourses = List.of("MATH130");
+		List<String> completedCourses = List.of("MATH130", "CS101","CS230");
 		System.out.println("Student has completed: " + completedCourses);
 		
 		//test each course
