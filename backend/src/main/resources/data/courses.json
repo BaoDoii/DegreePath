@@ -1,6 +1,15 @@
 {
 	"courses":[
 		{
+			"code": "MATH130",
+			"name": "Calculus I",
+			"units": 4,
+			"prerequisites": [],
+			"category": "Mathematics",
+			"workload": "Medium",
+			"terms": ["Fall", "Spring"]
+		},
+		{
 			"code": "CS101",
 			"name": "Computer Science I",
 			"units": 4,
@@ -47,15 +56,6 @@
 			"prerequisites": [],
 			"category": "Ethics",
 			"workload": "Light/Medium",
-			"terms": ["Fall", "Spring"]
-		},
-		{
-			"code": "MATH130",
-			"name": "Calculus I",
-			"units": 4,
-			"prerequisites": [],
-			"category": "Mathematics",
-			"workload": "Medium",
 			"terms": ["Fall", "Spring"]
 		}
 	]
