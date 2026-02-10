@@ -11,6 +11,11 @@ public class SemesterPlanner {
 		
 		//can take courses, not guided yet but just fixed to add up to max Units for now v1
 		for(Course course: allCourses) {
+			
+			if(completedCourses.contains(course.getCode())) {
+				continue;
+			}
+			
 			boolean canTake = PrerequisiteChecker.canTakeCourse(course, completedCourses);
 			if(canTake) {
 				if(totalUnits + course.getUnits() <= maxUnits) {
