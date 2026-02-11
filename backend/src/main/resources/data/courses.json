@@ -10,10 +10,19 @@
 			"terms": ["Fall", "Spring"]
 		},
 		{
+			"code": "MATH131",
+			"name": "Calculus II",
+			"units": 3,
+			"prerequisites": ["MATH130"],
+			"category": "Mathematics",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
 			"code": "MATH211",
 			"name": "Discrete Structures",
 			"units": 3,
-			"prerequisites": [],
+			"prerequisites": ["MATH130"],
 			"category": "Mathematics",
 			"workload": "Medium",
 			"terms": ["Fall", "Spring"]
@@ -22,7 +31,7 @@
 			"code": "MATH225",
 			"name": "Numberical Algorithms and Linear Algebra for Computer Science",
 			"units": 3,
-			"prerequisites": ["MATH130"],
+			"prerequisites": ["MATH130, CS101"],
 			"category": "Mathematics",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
@@ -125,8 +134,8 @@
 			"code": "CS413",
 			"name": "Analysis of Algorithms",
 			"units": 3,
-			"prerequisites": ["MATH"],
-			"category": "Theoretical Computer Science",
+			"prerequisites": ["MATH211", "CS211", "CS301"],
+			"category": "ALgorithms",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
 		},
@@ -135,7 +144,25 @@
 			"name": "Operating Systems",
 			"units": 3,
 			"prerequisites": ["CS211"],
-			"category": "Theoretical Computer Science",
+			"category": "Computer Systems",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS441",
+			"name": "Computer Networks",
+			"units": 3,
+			"prerequisites": ["CS301"],
+			"category": "Computer Systems",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "STAT316",
+			"name": "Statistics Probability for Science and Engineering",
+			"units": 3,
+			"prerequisites": ["MATH131"],
+			"category": "Mathematics",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
 		}
