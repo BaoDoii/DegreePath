@@ -165,6 +165,60 @@
 			"category": "Mathematics",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS351",
+			"name": "Web Development",
+			"units": 3,
+			"prerequisites": ["CS301"],
+			"category": "Programming",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS431",
+			"name": "Databases",
+			"units": 3,
+			"prerequisites": ["CS301"],
+			"category": "Theoretical Computer Science",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS453",
+			"name": "Mobile Programming",
+			"units": 3,
+			"prerequisites": ["CS301"],
+			"category": "Programming",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS455",
+			"name": "Computer Graphics",
+			"units": 3,
+			"prerequisites": ["CS301"],
+			"category": "Computer Graphics",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS461",
+			"name": "Artificial Intelligence",
+			"units": 3,
+			"prerequisites": ["CS301"],
+			"category": "Artificial Intelligence",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS471",
+			"name": "Security and Information Assurance",
+			"units": 3,
+			"prerequisites": ["CS301"],
+			"category": "Cybersecurity",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
 		}
 	]
 }
