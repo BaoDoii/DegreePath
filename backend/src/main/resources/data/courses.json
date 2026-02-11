@@ -31,7 +31,7 @@
 			"code": "MATH225",
 			"name": "Numberical Algorithms and Linear Algebra for Computer Science",
 			"units": 3,
-			"prerequisites": ["MATH130, CS101"],
+			"prerequisites": ["MATH130", "CS101"],
 			"category": "Mathematics",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
