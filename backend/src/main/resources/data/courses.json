@@ -10,6 +10,24 @@
 			"terms": ["Fall", "Spring"]
 		},
 		{
+			"code": "MATH211",
+			"name": "Discrete Structures",
+			"units": 3,
+			"prerequisites": [],
+			"category": "Mathematics",
+			"workload": "Medium",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "MATH225",
+			"name": "Numberical Algorithms and Linear Algebra for Computer Science",
+			"units": 3,
+			"prerequisites": ["MATH130"],
+			"category": "Mathematics",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
 			"code": "CS101",
 			"name": "Computer Science I",
 			"units": 4,
@@ -81,16 +99,43 @@
 			"name": "Computer Architecture",
 			"units": 3,
 			"prerequisites": ["CS201", "CS211"],
-			"category": "Computer Architecture",
+			"category": "Computer Systems",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
 		},
 		{
-			"code": "CS301",
-			"name": "Data Structures & Algorithms",
+			"code": "CS401",
+			"name": "Software Engineering",
 			"units": 3,
-			"prerequisites": ["CS201", "CS211"],
+			"prerequisites": ["CS301"],
 			"category": "Programming",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS411",
+			"name": "Automata and Computation",
+			"units": 3,
+			"prerequisites": ["CS211"],
+			"category": "Theoretical Computer Science",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS413",
+			"name": "Analysis of Algorithms",
+			"units": 3,
+			"prerequisites": ["MATH"],
+			"category": "Theoretical Computer Science",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		},
+		{
+			"code": "CS421",
+			"name": "Operating Systems",
+			"units": 3,
+			"prerequisites": ["CS211"],
+			"category": "Theoretical Computer Science",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
 		}
