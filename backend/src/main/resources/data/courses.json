@@ -81,9 +81,18 @@
 			"name": "Computer Architecture",
 			"units": 3,
 			"prerequisites": ["CS201", "CS211"],
-			"category": "Programming",
+			"category": "Computer Architecture",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
 		},
+		{
+			"code": "CS301",
+			"name": "Data Structures & Algorithms",
+			"units": 3,
+			"prerequisites": ["CS201", "CS211"],
+			"category": "Programming",
+			"workload": "Heavy",
+			"terms": ["Fall", "Spring"]
+		}
 	]
 }
