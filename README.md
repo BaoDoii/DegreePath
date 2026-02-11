@@ -2,33 +2,31 @@
 
 A course planning system for CSUEB Computer Science students that helps generate balanced semester plans based on prerequisites and unit constraints.
 
-## 🚀 Live Demo
+## Live Demo
 
-**[Try it here!](https://degreepath.onrender.com/test.html)**
+**[Try it Here!](https://degreepath.onrender.com)**
 
-**[Home Page](https://degreepath.onrender.com)**
-
-## 📋 Features
+## Features
 
 - **Prerequisite Validation**: Automatically checks if students meet course requirements
 - **Semester Plan Generation**: Creates optimized course schedules within unit limits
 - **REST API**: JSON endpoints for integration with other applications
 - **Course Database**: Stores lower-division CS courses with metadata (workload, terms offered, etc.)
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Java 17, Spring Boot 3.5
 - **Data Format**: JSON
 - **Deployment**: Docker, Render
 - **Version Control**: Git, GitHub
 
-## 💡 How It Works
+## How It Works
 
 1. **Input**: Student provides completed courses and desired unit load
 2. **Processing**: Algorithm validates prerequisites and generates valid course combinations
 3. **Output**: Returns semester plan with courses that satisfy all constraints
 
-## 🏗️ Architecture
+## Architecture
 ```
 ├── backend/
 │   ├── src/main/java/com/degreepath/
@@ -42,7 +40,7 @@ A course planning system for CSUEB Computer Science students that helps generate
 └── docs/                                   # Design documentation
 ```
 
-## 🔧 API Endpoints
+## API Endpoints
 
 ### GET `/api/courses`
 Returns all available courses
@@ -69,7 +67,7 @@ Generate a semester plan
 }
 ```
 
-## 🚦 Running Locally
+## Running Locally
 
 1. Clone the repository:
 ```bash
@@ -84,7 +82,7 @@ cd DegreePath/backend
 
 3. Visit `http://localhost:8080/test.html`
 
-## 📈 Future Enhancements (V2)
+## Future Enhancements (V2)
 
 - [ ] Minimum grade requirements (C- validation)
 - [ ] Course difficulty balancing
@@ -93,11 +91,11 @@ cd DegreePath/backend
 - [ ] Transfer student articulation
 - [ ] Additional majors
 
-## 👤 Author
+## Author
 
 **Brian**
 - GitHub: [@BaoDoii](https://github.com/BaoDoii)
 
-## 📝 License
+## License
 
 This project is open source and available under the MIT License.
