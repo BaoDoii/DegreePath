@@ -27,4 +27,17 @@ public class SemesterPlanner {
 		
 		return selectedCourses;
 	}
+	
+	//count how many courses depend on the course as a prereq
+	private static int countDependents(Course course, List<Course> allCourses) {
+		int count = 0;
+		
+		for(Course c: allCourses) {
+			if(c.getPrerequisites().contains(course.getCode())) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
 }
