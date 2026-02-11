@@ -107,7 +107,7 @@
 			"code": "CS321",
 			"name": "Computer Architecture",
 			"units": 3,
-			"prerequisites": ["CS201", "CS211"],
+			"prerequisites": ["CS211", "CS221"],
 			"category": "Computer Systems",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
@@ -125,7 +125,7 @@
 			"code": "CS411",
 			"name": "Automata and Computation",
 			"units": 3,
-			"prerequisites": ["CS211"],
+			"prerequisites": ["CS211", "CS211"],
 			"category": "Theoretical Computer Science",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
@@ -143,7 +143,7 @@
 			"code": "CS421",
 			"name": "Operating Systems",
 			"units": 3,
-			"prerequisites": ["CS211"],
+			"prerequisites": ["CS301"],
 			"category": "Computer Systems",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
