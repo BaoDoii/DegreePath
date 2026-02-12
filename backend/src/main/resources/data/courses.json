@@ -116,7 +116,7 @@
 			"code": "CS411",
 			"name": "Automata and Computation",
 			"units": 3,
-			"prerequisites": ["CS211", "CS211"],
+			"prerequisites": ["CS211", "MATH225"],
 			"category": "Theoretical Computer Science",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
