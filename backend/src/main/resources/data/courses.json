@@ -19,15 +19,6 @@
 			"terms": ["Fall", "Spring"]
 		},
 		{
-			"code": "MATH211",
-			"name": "Discrete Structures",
-			"units": 3,
-			"prerequisites": ["MATH130"],
-			"category": "Mathematics",
-			"workload": "Medium",
-			"terms": ["Fall", "Spring"]
-		},
-		{
 			"code": "MATH225",
 			"name": "Numberical Algorithms and Linear Algebra for Computer Science",
 			"units": 3,
@@ -134,7 +125,7 @@
 			"code": "CS413",
 			"name": "Analysis of Algorithms",
 			"units": 3,
-			"prerequisites": ["MATH211", "CS211", "CS301"],
+			"prerequisites": ["CS211", "CS301"],
 			"category": "ALgorithms",
 			"workload": "Heavy",
 			"terms": ["Fall", "Spring"]
