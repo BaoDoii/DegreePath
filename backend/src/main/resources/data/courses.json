@@ -15,7 +15,7 @@
 			"units": 3,
 			"prerequisites": ["MATH130"],
 			"category": "Mathematics",
-			"workload": "Heavy",
+			"workload": "Medium/Heavy",
 			"terms": ["Fall", "Spring"]
 		},
 		{
@@ -91,7 +91,7 @@
 			"units": 3,
 			"prerequisites": ["CS201", "CS211"],
 			"category": "Programming",
-			"workload": "Heavy",
+			"workload": "Medium",
 			"terms": ["Fall", "Spring"]
 		},
 		{
@@ -100,7 +100,7 @@
 			"units": 3,
 			"prerequisites": ["CS211", "CS221"],
 			"category": "Computer Systems",
-			"workload": "Heavy",
+			"workload": "Medium/Heavy",
 			"terms": ["Fall", "Spring"]
 		},
 		{
@@ -118,7 +118,7 @@
 			"units": 3,
 			"prerequisites": ["CS211", "MATH225"],
 			"category": "Theoretical Computer Science",
-			"workload": "Heavy",
+			"workload": "Medium",
 			"terms": ["Fall", "Spring"]
 		},
 		{
@@ -163,7 +163,7 @@
 			"units": 3,
 			"prerequisites": ["CS301"],
 			"category": "Programming",
-			"workload": "Heavy",
+			"workload": "Medium/Heavy",
 			"terms": ["Fall", "Spring"]
 		},
 		{
@@ -181,7 +181,7 @@
 			"units": 3,
 			"prerequisites": ["CS301"],
 			"category": "Programming",
-			"workload": "Heavy",
+			"workload": "Medium/Heavy",
 			"terms": ["Fall", "Spring"]
 		},
 		{
@@ -190,7 +190,7 @@
 			"units": 3,
 			"prerequisites": ["CS301"],
 			"category": "Computer Graphics",
-			"workload": "Heavy",
+			"workload": "Medium/Heavy",
 			"terms": ["Fall", "Spring"]
 		},
 		{
