@@ -9,6 +9,7 @@ prerequisite validation and priority ranking algorithms.
 
 ## Screenshots
 
+<img width="1223" height="928" alt="Capture" src="https://github.com/user-attachments/assets/683da9f1-a6d6-4c99-97d7-87207f306dac" />
 
 
 ## Features
