@@ -1,101 +1,81 @@
 # DegreePath
 
-A course planning system for CSUEB Computer Science students that helps generate balanced semester plans based on prerequisites and unit constraints.
+A full-stack academic course planning system for CSUEB Computer Science 
+students. Generates intelligent semester plans using graph-based 
+prerequisite validation and priority ranking algorithms.
 
 ## Live Demo
-
-**[Try it Here!](https://degreepath.onrender.com)**
+**[Try it here →](https://degreepath.onrender.com)**
 
 ## Features
 
-- **Prerequisite Validation**: Automatically checks if students meet course requirements
-- **Semester Plan Generation**: Creates optimized course schedules within unit limits
-- **REST API**: JSON endpoints for integration with other applications
-- **Course Database**: Stores lower-division CS courses with metadata (workload, terms offered, etc.)
+- **Prerequisite Validation** – Graph-based algorithm validates course 
+  dependencies before recommending courses
+- **Priority Ranking** – Recommends courses that unlock the most future 
+  options first using dependency graph traversal
+- **25+ CS Courses** – Complete CSUEB CS curriculum including 
+  lower-division, upper-division, and elective courses
+- **Workload Metadata** – Courses rated by difficulty to support 
+  balanced semester planning
+- **REST API** – Clean JSON endpoints for course data and plan generation
 
 ## Tech Stack
 
-- **Backend**: Java 17, Spring Boot 3.5
-- **Data Format**: JSON
-- **Deployment**: Docker, Render
-- **Version Control**: Git, GitHub
+| Layer | Technology |
+|-------|-----------|
+| Backend | Java 17, Spring Boot 3.5 |
+| Algorithm | Graph traversal, Constraint satisfaction |
+| Frontend | HTML, CSS, JavaScript |
+| Data | JSON |
+| Deployment | Docker, Render |
+| Version Control | Git, GitHub |
 
 ## How It Works
 
-1. **Input**: Student provides completed courses and desired unit load
-2. **Processing**: Algorithm validates prerequisites and generates valid course combinations
-3. **Output**: Returns semester plan with courses that satisfy all constraints
+1. Student selects completed courses
+2. Sets maximum unit load for semester
+3. Algorithm validates prerequisites using graph traversal
+4. Courses ranked by dependency unlock potential
+5. Returns optimized semester plan
 
 ## Architecture
 ```
+DegreePath/
 ├── backend/
 │   ├── src/main/java/com/degreepath/
-│   │   ├── Course.java                    # Course data model
-│   │   ├── PrerequisiteChecker.java       # Validation logic
-│   │   ├── SemesterPlanner.java           # Plan generation algorithm
-│   │   └── PlannerController.java         # REST API endpoints
+│   │   ├── Course.java                 # Data model
+│   │   ├── PrerequisiteChecker.java    # Prerequisite validation
+│   │   ├── SemesterPlanner.java        # Priority ranking algorithm
+│   │   └── PlannerController.java      # REST API endpoints
 │   └── src/main/resources/
-│       └── data/courses.json              # Course database
-├── data/                                   # Original course data
-└── docs/                                   # Design documentation
+│       ├── data/courses.json           # Course database (25+ courses)
+│       └── static/                     # Frontend files
+└── README.md
 ```
 
 ## API Endpoints
 
 ### GET `/api/courses`
-Returns all available courses
+Returns all available courses with metadata
 
 ### POST `/api/plan`
-Generate a semester plan
+Generates prioritized semester plan
 
-**Request:**
-```json
-{
-  "completed": ["MATH130"],
-  "maxUnits": 8
-}
-```
+## Roadmap
 
-**Response:**
-```json
-{
-  "courses": [
-    {"code": "CS101", "name": "Computer Science I", "units": 4, ...},
-    {"code": "CS211", "name": "Discrete Structures", "units": 4, ...}
-  ],
-  "totalUnits": 8
-}
-```
-
-## Running Locally
-
-1. Clone the repository:
-```bash
-git clone https://github.com/BaoDoii/DegreePath.git
-cd DegreePath/backend
-```
-
-2. Run with Maven:
-```bash
-./mvnw spring-boot:run
-```
-
-3. Visit `http://localhost:8080/test.html`
-
-## Future Enhancements (V2)
-
-- [ ] Minimum grade requirements (C- validation)
-- [ ] Course difficulty balancing
+- [x] Prerequisite validation algorithm
+- [x] Priority-based course ranking
+- [x] 20+ CSUEB CS courses
+- [x] REST API with JSON endpoints
+- [x] Production deployment
 - [ ] Multi-semester planning
-- [ ] Upper-division course support
-- [ ] Transfer student articulation
+- [ ] Min grade validation (C- checking)
+- [ ] Difficulty balancing warnings
+- [ ] Transfer student support
 - [ ] Additional majors
 
 ## Author
 
-**Brian**
+**Brian Ha**
 - GitHub: [@BaoDoii](https://github.com/BaoDoii)
-
-## License
-
-This project is open source and available under the MIT License.
+- LinkedIn: [linkedin.com/in/brian-ha-a9060724a]
