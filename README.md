@@ -8,11 +8,7 @@ prerequisite validation and priority ranking algorithms.
 **[Try it here →](https://degreepath.onrender.com)**
 
 ## Screenshots
-<img width="900" height="513" alt="Capture" src="https://github.com/user-attachments/assets/1c6df2af-a37d-4ba6-ab1f-77e034151cb7" />
 
-<img width="576" height="435" alt="Capture" src="https://github.com/user-attachments/assets/d4a098ff-1a04-4624-810f-d93452ec3db2" />
-
-<img width="637" height="500" alt="Capture" src="https://github.com/user-attachments/assets/99592adc-098c-409d-8cc4-5b3b068c1ad3" />
 
 
 ## Features
