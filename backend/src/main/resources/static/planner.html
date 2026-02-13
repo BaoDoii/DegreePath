@@ -198,7 +198,7 @@
 	    // Create checkboxes for each course
 	    function displayCheckboxes() {
 	        const container = document.getElementById('courseCheckboxes');
-	        container.innerHTML = ''; // Clear existing
+	        container.innerHTML = ''; 
 
 	        allCourses.forEach(course => {
 	            const div = document.createElement('div');
@@ -256,19 +256,19 @@
 	        }
 	    }
 
-	    // Display results
+	// Display results
 	    function displayResults(data) {
 	        const resultsSection = document.getElementById('results');
 	        const courseResults = document.getElementById('courseResults');
 	        const summary = document.getElementById('summary');
 
-	        // Clear previous results
+	 // Clear previous results
 	        courseResults.innerHTML = '';
 
-	        // Show results section
+	   // Show results section
 	        resultsSection.style.display = 'block';
 
-	        // Display courses
+	  // Display courses
 	        if (data.courses.length === 0) {
 	            courseResults.innerHTML = '<p>No courses available based on your selections. Try adjusting your completed courses or unit limit.</p>';
 	        } else {
@@ -284,14 +284,14 @@
 	            });
 	        }
 
-	        // Display summary
+	  // Display summary
 	        summary.innerHTML = `Total Units: ${data.totalUnits} / ${data.maxUnits}`;
 
-	        // Scroll to results
+	 // Scroll to results
 	        resultsSection.scrollIntoView({ behavior: 'smooth' });
 	    }
 
-	    // Load courses when page loads
+	// Load courses when page loads
 	    window.onload = loadCourses;
 	</script>
 	
