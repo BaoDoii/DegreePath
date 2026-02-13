@@ -22,7 +22,7 @@ prerequisite validation and priority ranking algorithms.
   dependencies before recommending courses
 - **Priority Ranking** – Recommends courses that unlock the most future 
   options first using dependency graph traversal
-- **25+ CS Courses** – Complete CSUEB CS curriculum including 
+- **20+ CS Courses** – Complete CSUEB CS curriculum including 
   lower-division, upper-division, and elective courses
 - **Workload Metadata** – Courses rated by difficulty to support 
   balanced semester planning
