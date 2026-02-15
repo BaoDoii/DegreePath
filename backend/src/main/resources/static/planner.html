@@ -285,17 +285,19 @@
 	            });
 	        }
 			
+		//check heavy count, if 3+ then display warning
 			let heavyCount = 0;
 			data.courses.forEach(course =>{
 				if(course.workload === "Heavy"){
 					heavyCount++;
 				}
-				if(heavyCount >= 3){
-					document.getElementById('workloadWarning').innerHTML = "Warning: This plan has " + heavyCount + " Heavy workload courses";
-				} else{
-					document.getElementById('wordloadWarning').innerHTML ='';
-				}
 			});
+			
+			if(heavyCount >= 3){
+				document.getElementById('workloadWarning').innerHTML = "Warning: This plan has " + heavyCount + " Heavy workload courses";
+			} else{
+				document.getElementById('wordloadWarning').innerHTML ='';
+			}
 
 	  // Display summary
 	        summary.innerHTML = `Total Units: ${data.totalUnits} / ${data.maxUnits}`;
