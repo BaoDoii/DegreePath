@@ -156,6 +156,7 @@
 			border-radius: 8px;
 			margin-top: 15px;
 			font-weight: 600;
+			display: none;
 		}
 
 	</style>
@@ -301,11 +302,14 @@
 					heavyCount++;
 				}
 			});
+			const warning = document.getElementById('workloadWarning');
 			
 			if(heavyCount >= 3){
-				document.getElementById('workloadWarning').innerHTML = "Warning: This plan has " + heavyCount + " Heavy workload courses";
+				warning.innerHTML = "Warning: This plan has " + heavyCount + " Heavy workload courses";
+				warning.style.display = 'block';
 			} else{
-				document.getElementById('workloadWarning').innerHTML ='';
+				warning.innerHTML = '';
+				warning.style.display = 'none';
 			}
 
 	  // Display summary
