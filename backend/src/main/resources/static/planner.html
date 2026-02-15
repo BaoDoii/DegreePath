@@ -176,6 +176,7 @@
         <section id="results" class="results-section" style="display: none;">
             <h2>Your Semester Plan</h2>
             <div id="courseResults"></div>
+			<div id="workloadWarning"></div>
             <div id="summary"></div>
         </section>
     </div>
@@ -283,6 +284,18 @@
 	                courseResults.appendChild(card);
 	            });
 	        }
+			
+			let heavyCount = 0;
+			data.courses.forEach(course =>{
+				if(course.workload === "Heavy"){
+					heavyCount++;
+				}
+				if(heavyCount >= 3){
+					document.getElementById('workloadWarning').innerHTML = "Warning: This plan has " + heavyCount + " Heavy workload courses";
+				} else{
+					document.getElementById('wordloadWarning').innerHTML ='';
+				}
+			});
 
 	  // Display summary
 	        summary.innerHTML = `Total Units: ${data.totalUnits} / ${data.maxUnits}`;
