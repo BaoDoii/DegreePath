@@ -105,7 +105,7 @@ CommandLineRunner run() {
 		List<String> studentCompleted = List.of("MATH130", "CS101","CS230");
 		int maxUnits = 8;
 		
-		List<Course> semesterPlanner = SemesterPlanner.generateSemester(studentCompleted, courses, maxUnits);
+		List<Course> semesterPlanner = SemesterPlanner.generateSemester(studentCompleted, courses, maxUnits,0);
 		
 		System.out.println("Completed: " + studentCompleted);
 		System.out.println("Max Units: "+ maxUnits);

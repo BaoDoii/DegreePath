@@ -40,7 +40,7 @@ public class PlannerController {
 		return allCourses;
 	}
 	
-	@PostMapping("/plan") //POST  //RequestBody = take Json from POST Request body, covnert it to Map, give back as request paramter
+	@PostMapping("/plan") //POST  //RequestBody = take Json from POST Request body, converts JSON into  Map, give back as request parameter
 	public Map<String, Object> generatePlan(@RequestBody Map<String, Object> request){
 		//extract the completed courses from request map
 		List<String> completedCourses = (List<String>)request.get("completed");
