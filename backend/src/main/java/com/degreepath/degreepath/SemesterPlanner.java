@@ -17,10 +17,11 @@ public class SemesterPlanner {
 		return count;
 	}
 	
-	public static List<Course> generateSemester(List<String> completedCourses, List<Course> allCourses, int maxUnits){
+	public static List<Course> generateSemester(List<String> completedCourses, List<Course> allCourses, int maxUnits, int numGEs){
 		List<Course> selectedCourses = new ArrayList<>();
 		List<Course> availableCourses = new ArrayList<>();
 		int totalUnits = 0;
+		int getGEUnits = numGEs * 3;
 		
 		//collect available courses 
 		for(Course c : allCourses) {
@@ -43,14 +44,26 @@ public class SemesterPlanner {
 		});
 		
 		
-		
 		//can take courses, v2  
 		for(Course course: availableCourses) {
-			if(totalUnits + course.getUnits() <= maxUnits) {
+			if(totalUnits + course.getUnits() <= maxUnits - getGEUnits) {
 				selectedCourses.add(course);
 				totalUnits += course.getUnits();
 			}
 			
+		}
+				
+		for(int i = 0; i < numGEs; i++) {
+			Course GECourse = new Course();
+			GECourse.setCode("GE" + (i+1));
+			GECourse.setName("GE" + (i+1));
+			GECourse.setUnits(3);
+			GECourse.setWorkload("Medium");
+			GECourse.setCategory("General Education");
+			GECourse.setPrerequisites(new ArrayList<>());
+			
+			selectedCourses.add(GECourse);
+			totalUnits+= 3;
 		}
 		
 		return selectedCourses;
