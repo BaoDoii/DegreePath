@@ -263,9 +263,14 @@
 	        }
 			
 			if (numGEs < 0 || numGEs > 4) {
-				            alert('Please enter a valid number of units (3-18)');
-				            return;
-				        }
+				alert('Please enter a valid number of GEs');
+				return;
+			}
+			
+			if(numGE * 3 > maxUnits){
+				alert('Please enter a valid number of GEs')
+				return;
+			}
 
 	        try {
 	            // Call API
