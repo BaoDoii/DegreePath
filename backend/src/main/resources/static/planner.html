@@ -252,6 +252,7 @@
 
 	        // Get max units
 	        const maxUnits = parseInt(document.getElementById('maxUnits').value);
+			const numGEs = parseInt(document.getElementById('numGEs').value);
 
 	        // Validate input
 	        if (maxUnits < 3 || maxUnits > 18) {
@@ -267,6 +268,7 @@
 	                body: JSON.stringify({
 	                    completed: completed,
 	                    maxUnits: maxUnits
+						numGEs: numGEs
 	                })
 	            });
 
