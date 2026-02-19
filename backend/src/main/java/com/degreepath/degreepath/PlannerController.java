@@ -46,8 +46,12 @@ public class PlannerController {
 		List<String> completedCourses = (List<String>)request.get("completed");
 		//extract map units from request map
 		int maxUnits = (int) request.get("maxUnits");
+		
+		//extract numGEs and default to 0 if not provided
+		int numGEs = request.containsKey("numGEs") ? (int) request.get("numGEs"): 0;
+		
 		//call SemesterPlanner to generate plan
-		List<Course> semesterPlan = SemesterPlanner.generateSemester(completedCourses, allCourses, maxUnits);
+		List<Course> semesterPlan = SemesterPlanner.generateSemester(completedCourses, allCourses, maxUnits, numGEs);
 		//calculate total units
 		int totalUnits = 0;
 		for(Course course: semesterPlan) {
