@@ -101,6 +101,16 @@
 	        border-radius: 5px;
 	        margin-bottom: 20px;
 	    }
+		
+		#numGEs{
+			width: 100%;
+			max-width: 200px;
+			padding: 10px;
+			font-size: 1.1rem;
+			border: 2px solid #ddd;
+			border-radius: 5px;
+			margin-bottom: 20px;
+		}
 
 	    .btn-generate {
 	        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -186,7 +196,7 @@
             <input type="number" id="maxUnits" value="8" min="3" max="18">
 			<h2>Number of GE Courses</h2>
 			<input type="number" id="numGEs" value="0" min="0" max="4">
-			<small style="color: #888; fonst-style:italic;">Each GE is assumed to be 3 units</small style>
+			<small style="color: #888; font-style:italic;">Each GE is assumed to be 3 units</small style>
 
             <button onclick="generatePlan()" class="btn-generate">
                 Generate Plan
@@ -267,7 +277,7 @@
 				return;
 			}
 			
-			if(numGE * 3 > maxUnits){
+			if(numGEs * 3 > maxUnits){
 				alert('Please enter a valid number of GEs')
 				return;
 			}
