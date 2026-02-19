@@ -269,7 +269,7 @@
 	                headers: { 'Content-Type': 'application/json' },
 	                body: JSON.stringify({
 	                    completed: completed,
-	                    maxUnits: maxUnits
+	                    maxUnits: maxUnits,
 						numGEs: numGEs
 	                })
 	            });
@@ -333,6 +333,7 @@
 	 // Scroll to results
 	        resultsSection.scrollIntoView({ behavior: 'smooth' });
 	    }
+		
 	// Load courses when page loads
 	    window.onload = loadCourses;
 	</script>
