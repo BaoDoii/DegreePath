@@ -261,6 +261,11 @@
 	            alert('Please enter a valid number of units (3-18)');
 	            return;
 	        }
+			
+			if (numGEs < 0 || numGEs > 4) {
+				            alert('Please enter a valid number of units (3-18)');
+				            return;
+				        }
 
 	        try {
 	            // Call API
