@@ -54,16 +54,18 @@ public class SemesterPlanner {
 		}
 				
 		for(int i = 0; i < numGEs; i++) {
-			Course GECourse = new Course();
-			GECourse.setCode("GE" + (i+1));
-			GECourse.setName("GE" + (i+1));
-			GECourse.setUnits(3);
-			GECourse.setWorkload("Medium");
-			GECourse.setCategory("General Education");
-			GECourse.setPrerequisites(new ArrayList<>());
-			
-			selectedCourses.add(GECourse);
-			totalUnits+= 3;
+			if(totalUnits + 3 <= maxUnits) {
+				Course GECourse = new Course();
+				GECourse.setCode("GE" + (i+1));
+				GECourse.setName("GE" + (i+1));
+				GECourse.setUnits(3);
+				GECourse.setWorkload("Medium");
+				GECourse.setCategory("General Education");
+				GECourse.setPrerequisites(new ArrayList<>());
+				
+				selectedCourses.add(GECourse);
+				totalUnits+= 3;
+			}
 		}
 		
 		return selectedCourses;
