@@ -57,7 +57,7 @@ DegreePath/
 │   │   ├── SemesterPlanner.java        # Priority ranking algorithm
 │   │   └── PlannerController.java      # REST API endpoints
 │   └── src/main/resources/
-│       ├── data/courses.json           # Course database (25+ courses)
+│       ├── data/courses.json           # Course database (20+ courses)
 │       └── static/                     # Frontend files
 └── README.md
 ```
