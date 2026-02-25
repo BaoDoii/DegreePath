@@ -105,4 +105,60 @@ public class PlannerController {
 //	    ↓
 //	Student/Frontend receives it
 	
+	
+	
+	@PostMapping("/multiplan")
+	public Map<String, Object> generateMultiPlan(@RequestBody Map<String, Object> request){
+		//exact input
+		List<String> completedCourses = ((List<String>) request.get("completed"));
+		int maxUnits = (int) request.get("maxUnits");
+		int numGEs = request.containsKey("numGEs") ? (int) request.get("numGEs") : 0;
+		int numberOfSemesters = request.containsKey("numberOfSemesters") ? (int) request.get("numberOfSemesters") : 0;
+		
+		//data structures
+		List<String> currentlyCompleted =  new ArrayList<>(completedCourses);
+		List<Map<String,Object>> allSemesters = new ArrayList<>();
+		
+		//loop semester planning
+		if(numberOfSemesters > 0) {
+			for(int i = 0; i < numberOfSemesters; i++) {								
+				List<Course> semesterPlan = SemesterPlanner.generateSemester(currentlyCompleted, allCourses, maxUnits, numGEs);
+				//if no courses stop
+				if(semesterPlan.size() == 0) {
+					break;
+				}
+				//calc total units
+				int totalUnits = 0;
+				for(Course course: semesterPlan) {
+					totalUnits += course.getUnits();
+				}
+				//update currentlyCompleted
+				for(Course course : semesterPlan) {
+					currentlyCompleted.add(course.getCode());
+				}
+				
+				//build semester object
+				Map<String, Object> semester = Map.of(
+					"semesterNumber",i+1,
+					"courses", semesterPlan,
+					"totalUnits", totalUnits
+				);
+				
+				//add to results
+				allSemesters.add(semester);
+				
+				//update completed for next semester
+				for(Course course: semesterPlan) {
+					currentlyCompleted.add(course.getCode());
+				}
+				
+			}
+		}
+		//return all semesters
+		return Map.of(
+		"semesters", allSemesters,
+		"initalCompleted", completedCourses,
+		"numberOfSemesters", allSemesters.size()
+		);		
+	}
 }
