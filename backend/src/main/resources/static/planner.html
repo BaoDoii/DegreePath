@@ -360,6 +360,19 @@
 	 // Scroll to results
 	        resultsSection.scrollIntoView({ behavior: 'smooth' });
 	    }
+//		The Full Flow:
+//		1. Clear old results
+//		2. For each SEMESTER:
+//		   a. Create header ("Semester 1")
+//		   b. For each COURSE in semester:
+//		      - Create card with course details
+//		      - Add to page
+//		   c. Count Heavy courses
+//		   d. If 3+, create warning and add to page
+//		   e. Create summary ("Total Units: 12")
+//		   f. Add summary to page
+//		3. Show results section
+//		4. Scroll to results
 		
 	// Load courses when page loads
 	    window.onload = loadCourses;
