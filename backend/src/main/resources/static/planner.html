@@ -314,7 +314,7 @@
 
 	 // Clear previous results
 	        courseResults.innerHTML = '';
-
+			
 	  // Display courses
 	  		data.semesters.forEach(semester => {
 				const semesterHeader = document.createElement('h2');
@@ -331,11 +331,10 @@
 						<p><strong>Prerequisites:</strong> ${course.prerequisites.length > 0 ? course.prerequisites.join(', ') : 'None'}</p>
 					`;
 					courseResults.appendChild(card);
-				});
-	
+					
 				//check heavy count, if 3+ then display warning
 					let heavyCount = 0;
-					data.semester.forEach(semester =>{
+					semester.courses.forEach(semester =>{
 						if(semester.workload === "Heavy"){
 							heavyCount++;
 						}
@@ -348,7 +347,9 @@
 					} else{
 						warning.innerHTML = '';
 						warning.style.display = 'none';
-					}
+					}				
+				});
+
 
 			 // Show results section
 					resultsSection.style.display = 'block';
