@@ -335,8 +335,8 @@
 	
 				//check heavy count, if 3+ then display warning
 					let heavyCount = 0;
-					data.semester.forEach(course =>{
-						if(course.workload === "Heavy"){
+					data.semester.forEach(semester =>{
+						if(semester.workload === "Heavy"){
 							heavyCount++;
 						}
 					});
