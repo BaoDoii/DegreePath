@@ -132,10 +132,6 @@ public class PlannerController {
 				for(Course course: semesterPlan) {
 					totalUnits += course.getUnits();
 				}
-				//update currentlyCompleted
-				for(Course course : semesterPlan) {
-					currentlyCompleted.add(course.getCode());
-				}
 				
 				//build semester object
 				Map<String, Object> semester = Map.of(
@@ -157,7 +153,7 @@ public class PlannerController {
 		//return all semesters
 		return Map.of(
 		"semesters", allSemesters,
-		"initalCompleted", completedCourses,
+		"initialCompleted", completedCourses,
 		"numberOfSemesters", allSemesters.size()
 		);		
 	}
