@@ -315,9 +315,6 @@
 	 // Clear previous results
 	        courseResults.innerHTML = '';
 
-	   // Show results section
-	        resultsSection.style.display = 'block';
-
 	  // Display courses
 	  		data.semesters.forEach(semester => {
 				const semesterHeader = document.createElement('h2');
@@ -353,6 +350,8 @@
 						warning.style.display = 'none';
 					}
 
+			 // Show results section
+					resultsSection.style.display = 'block';
 			  // Display summary
 			        summary.innerHTML = `Total Units: ${data.totalUnits} / ${data.maxUnits}`;
 					
