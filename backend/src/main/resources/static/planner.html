@@ -330,32 +330,32 @@
 						<p><strong>Units:</strong> ${course.units} | <strong>Workload:</strong> ${course.workload}</p>
 						<p><strong>Prerequisites:</strong> ${course.prerequisites.length > 0 ? course.prerequisites.join(', ') : 'None'}</p>
 					`;
-					courseResults.appendChild(card);
-					
-				//check heavy count, if 3+ then display warning
-					let heavyCount = 0;
-					semester.courses.forEach(semester =>{
-						if(semester.workload === "Heavy"){
-							heavyCount++;
-						}
-					});
-					const warning = document.getElementById('workloadWarning');
-					
-					if(heavyCount >= 3){
-						warning.innerHTML = "Warning: This plan has " + heavyCount + " Heavy workload courses";
-						warning.style.display = 'block';
-					} else{
-						warning.innerHTML = '';
-						warning.style.display = 'none';
-					}				
+					courseResults.appendChild(card);		
 				});
+			//check heavy count, if 3+ then display warning
+				let heavyCount = 0;
+				semester.courses.forEach(course =>{
+					if(course.workload === "Heavy"){
+						heavyCount++;
+					}
+				});
+								
+				if(heavyCount >= 3){
+					const warning = document.createElement('div');
+					warning.style.cssText = 'color: #856464; background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: 600;';
+					warning.textContent = `Warning: This semester has ${heavyCount} Heavy courses`;
+					courseResults.appendChild(warning);
+				}
 
 
 			 // Show results section
 					resultsSection.style.display = 'block';
 			  // Display summary
-			        summary.innerHTML = `Total Units: ${data.totalUnits} / ${data.maxUnits}`;
-					
+			  const semesterSummary = document.createElement('div');
+			  semesterSummary.className = 'semester-summary'; 
+			  semesterSummary.style.cssText = 'background: #667eea; color: white; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center; font-weight: 600;';
+			  semesterSummary.textContent = `Total Units: ${semester.totalUnits}`;
+			  courseResults.appendChild(semesterSummary);					
 			});
 	 // Scroll to results
 	        resultsSection.scrollIntoView({ behavior: 'smooth' });
