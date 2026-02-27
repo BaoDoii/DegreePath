@@ -1,39 +1,33 @@
 # DegreePath
 
-A full-stack academic course planning system for CSUEB Computer Science 
-students. Generates intelligent semester plans using graph-based 
-prerequisite validation and priority ranking algorithms.
+A full-stack academic course planning system for CSUEB Computer Science students. Generates intelligent multi-semester graduation paths using graph-based prerequisite validation and priority ranking algorithms.
 
 ## Live Demo
 **[Try it here →](https://degreepath.onrender.com)**
 
 ## Screenshots
+<img width="1016" height="926" alt="home" src="https://github.com/user-attachments/assets/6972f563-e346-4cf0-b166-7eaa663d34de" />
 
-<img width="1223" height="928" alt="Capture" src="https://github.com/user-attachments/assets/683da9f1-a6d6-4c99-97d7-87207f306dac" />
+<img width="436" height="816" alt="planner" src="https://github.com/user-attachments/assets/357cf043-7b28-4a2a-956b-45c29cb3e50d" />
 
-<img width="601" height="921" alt="Capture2" src="https://github.com/user-attachments/assets/78fe4e06-4dd5-4683-9c3f-094c8c503092" />
-
-<img width="652" height="491" alt="Capture3" src="https://github.com/user-attachments/assets/8e098616-3048-41f3-8738-2d226da9e104" />
-
+<img width="604" height="857" alt="example" src="https://github.com/user-attachments/assets/7c8b9579-46a0-4906-9c8f-1a7d08a4ef43" />
 
 ## Features
 
-- **Prerequisite Validation** – Graph-based algorithm validates course 
-  dependencies before recommending courses
-- **Priority Ranking** – Recommends courses that unlock the most future 
-  options first using dependency graph traversal
-- **20+ CS Courses** – Complete CSUEB CS curriculum including 
-  lower-division, upper-division, and elective courses
-- **Workload Metadata** – Courses rated by difficulty to support 
-  balanced semester planning
-- **REST API** – Clean JSON endpoints for course data and plan generation
+- **Multi-Semester Planning** – Generates complete graduation paths across 1-8 semesters with sequential prerequisite tracking
+- **Prerequisite Validation** – Graph-based algorithm validates course dependencies ensuring valid course sequences
+- **Priority Ranking** – Recommends courses that unlock the most future options first using dependency graph traversal
+- **GE Integration** – Supports general education placeholder courses for realistic semester planning
+- **Difficulty Balancing** – Analyzes course workload and warns when 3+ Heavy courses are scheduled
+- **20+ CS Courses** – Complete CSUEB CS curriculum including lower-division, upper-division, and elective courses
+- **REST API** – Clean JSON endpoints for course data and multi-semester plan generation
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
 | Backend | Java 17, Spring Boot 3.5 |
-| Algorithm | Graph traversal, Constraint satisfaction |
+| Algorithm | Graph traversal, Constraint satisfaction, Priority ranking |
 | Frontend | HTML, CSS, JavaScript |
 | Data | JSON |
 | Deployment | Docker, Render |
@@ -42,10 +36,12 @@ prerequisite validation and priority ranking algorithms.
 ## How It Works
 
 1. Student selects completed courses
-2. Sets maximum unit load for semester
-3. Algorithm validates prerequisites using graph traversal
-4. Courses ranked by dependency unlock potential
-5. Returns optimized semester plan
+2. Sets maximum unit load per semester
+3. Sets number of GE courses per semester
+4. Specifies number of semesters to plan (1-8)
+5. Algorithm validates prerequisites using graph traversal
+6. Courses ranked by dependency unlock potential
+7. Returns multi-semester graduation path with difficulty warnings
 
 ## Architecture
 ```
@@ -57,7 +53,7 @@ DegreePath/
 │   │   ├── SemesterPlanner.java        # Priority ranking algorithm
 │   │   └── PlannerController.java      # REST API endpoints
 │   └── src/main/resources/
-│       ├── data/courses.json           # Course database (20+ courses)
+│       ├── data/courses.json           # Course database (23 courses)
 │       └── static/                     # Frontend files
 └── README.md
 ```
@@ -68,7 +64,47 @@ DegreePath/
 Returns all available courses with metadata
 
 ### POST `/api/plan`
-Generates prioritized semester plan
+Generates single semester plan
+
+**Request:**
+```json
+{
+  "completed": ["MATH130", "CS101"],
+  "maxUnits": 12,
+  "numGEs": 2
+}
+```
+
+### POST `/api/multiplan`
+Generates multi-semester graduation path
+
+**Request:**
+```json
+{
+  "completed": ["MATH130"],
+  "maxUnits": 12,
+  "numGEs": 2,
+  "numberOfSemesters": 3
+}
+```
+
+**Response:**
+```json
+{
+  "semesters": [
+    {
+      "semesterNumber": 1,
+      "courses": [...],
+      "totalUnits": 12
+    },
+    {
+      "semesterNumber": 2,
+      "courses": [...],
+      "totalUnits": 11
+    }
+  ]
+}
+```
 
 ## Roadmap
 
@@ -77,14 +113,20 @@ Generates prioritized semester plan
 - [x] 20+ CSUEB CS courses
 - [x] REST API with JSON endpoints
 - [x] Production deployment
-- [ ] Multi-semester planning
+- [x] Multi-semester planning (1-8 semesters)
+- [x] GE placeholder integration
+- [x] Difficulty balancing warnings
 - [ ] Min grade validation (C- checking)
-- [ ] Difficulty balancing warnings
-- [ ] Transfer student support
+- [ ] Transfer student articulation
 - [ ] Additional majors
+- [ ] Unit testing suite
 
 ## Author
 
 **Brian Ha**
 - GitHub: [@BaoDoii](https://github.com/BaoDoii)
-- LinkedIn: [linkedin.com/in/brian-ha-a9060724a]
+- LinkedIn: [linkedin.com/in/brian-ha-a9060724a](https://www.linkedin.com/in/brian-ha-a9060724a)
+
+## License
+
+MIT License
