@@ -23,12 +23,13 @@
 		}
 
 		header {
-		    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		    background: #1a1a1a;
 		    color: white;
 		    padding: 40px 20px;
 		    text-align: center;
 		    border-radius: 10px;
 		    margin-bottom: 30px;
+			border-bottom: 3px solid #0066cc;
 		}
 
 		header h1 {
@@ -78,7 +79,7 @@
 	    }
 
 	    .course-checkbox:hover {
-	        border-color: #667eea;
+	        border-color: #0066cc;
 	    }
 
 	    .course-checkbox input {
@@ -113,18 +114,19 @@
 		}
 
 	    .btn-generate {
-	        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	        background: #0066cc;
 	        color: white;
 	        border: none;
 	        padding: 15px 40px;
 	        font-size: 1.1rem;
-	        border-radius: 30px;
+	        border-radius: 8px;
 	        cursor: pointer;
 	        font-weight: 600;
-	        transition: transform 0.2s;
+	        transition: all 0.2s;
 	    }
 
 	    .btn-generate:hover {
+			background: #0052a3;
 	        transform: translateY(-2px);
 	    }
 
@@ -140,11 +142,11 @@
 	        padding: 20px;
 	        border-radius: 8px;
 	        margin-bottom: 15px;
-	        border-left: 4px solid #667eea;
+	        border-left: 4px solid #0066cc;
 	    }
 
 	    .course-card h3 {
-	        color: #667eea;
+	        color: #0066cc;
 	        margin-bottom: 5px;
 	    }
 		
@@ -156,7 +158,7 @@
 		}
 
 	    #summary {
-	        background: #667eea;
+	        background: #0066cc;
 	        color: white;
 	        padding: 20px;
 	        border-radius: 8px;
@@ -353,7 +355,7 @@
 			  // Display summary
 			  const semesterSummary = document.createElement('div');
 			  semesterSummary.className = 'semester-summary'; 
-			  semesterSummary.style.cssText = 'background: #667eea; color: white; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center; font-weight: 600;';
+			  semesterSummary.style.cssText = 'background: #0066cc; color: white; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center; font-weight: 600;';
 			  semesterSummary.textContent = `Total Units: ${semester.totalUnits}`;
 			  courseResults.appendChild(semesterSummary);					
 			});

@@ -18,10 +18,11 @@
         }
 
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1a1a1a;
             color: white;
             padding: 80px 20px;
             text-align: center;
+			border-bottom: 3px solid #0066cc;
         }
 
         .hero h1 {
@@ -38,16 +39,17 @@
         .btn {
             display: inline-block;
             padding: 15px 40px;
-            background: white;
-            color: #667eea;
+            background: #0066cc;
+            color: white;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: transform 0.2s;
+            transition: all 0.2s;
         }
 
         .btn:hover {
+			background: #0052a3;
             transform: translateY(-2px);
         }
 
@@ -67,12 +69,14 @@
         .feature-card {
             padding: 30px;
             background: #f8f9fa;
-            border-radius: 10px;
+            border-radius: 8px;
+			transition: transform 0.3s;
             text-align: center;
+			border-left: 4px solid #0066cc;
         }
 
         .feature-card h3 {
-            color: #667eea;
+            color: #0066cc;
             margin-bottom: 15px;
             font-size: 1.5rem;
         }
@@ -111,14 +115,14 @@
         }
 
         footer a {
-            color: #667eea;
+            color: #0066cc;
             text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="hero">
-        <h1>🎓 DegreePath</h1>
+        <h1>DegreePath</h1>
         <p>Smart Course Planning for CSUEB Computer Science Students</p>
         <a href="/planner.html" class="btn">Start Planning →</a>
     </div>
@@ -132,7 +136,7 @@
 
         <div class="features">
             <div class="feature-card">
-                <h3>✓ Prerequisite Validation</h3>
+                <h3>Prerequisite Validation</h3>
                 <p>Automatically checks if you meet course requirements before suggesting them.</p>
             </div>
 
