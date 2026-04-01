@@ -60,7 +60,42 @@ DegreePath/
 └── README.md
 ```
 
-## API Endpoints
+## Local Setup
+
+### Prerequisites
+- Java 17+
+- Maven 3.6+
+
+### Installation
+
+1. Clone the repository
+```bash
+   git clone https://github.com/BaoDoii/DegreePath.git
+   cd DegreePath
+```
+
+2. Run the backend
+```bash
+   cd backend
+   mvn clean install
+   mvn spring-boot:run
+```
+
+3. Access the application
+   - Open `http://localhost:8080`
+   - Frontend is served from `src/main/resources/static`
+
+### Docker Deployment
+```bash
+docker build -t degreepath .
+docker run -p 8080:8080 degreepath
+```
+
+### Testing
+```bash
+cd backend
+mvn test
+```
 
 ### GET `/api/courses`
 Returns all available courses with metadata
