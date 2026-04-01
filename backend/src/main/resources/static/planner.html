@@ -238,17 +238,17 @@
 		    
 		    // Categorize courses
 		    const categories = {
+				'Math Courses': allCourses.filter(c =>
+					['MATH130', 'MATH131', 'MATH225']
+				),
 		        'Lower Division': allCourses.filter(c => 
-		            ['CS101', 'CS111', 'CS201', 'CS211', 'MATH130', 'MATH135', 'MATH250'].includes(c.code)
+		            ['CS101', 'CS201', 'CS211', 'CS221', 'CS230'].includes(c.code)
 		        ),
-		        'Upper Division Core': allCourses.filter(c => 
-		            ['CS301', 'CS311', 'CS321', 'CS401', 'CS411', 'CS421'].includes(c.code)
-		        ),
-		        'Upper Division Electives': allCourses.filter(c => 
-		            ['CS331', 'CS431', 'CS441', 'CS451', 'CS461', 'CS471'].includes(c.code)
-		        ),
+		        'Upper Division': allCourses.filter(c => 
+		            ['CS301', 'CS311', 'CS321', 'CS401', 'CS411', 'CS413', 'CS421', 'CS441', 'STAT316'].includes(c.code)
+				),
 		        'Breadth': allCourses.filter(c => 
-		            ['CS230', 'CS460'].includes(c.code)
+		            ['CS351','CS431','CS453','CS455','CS461', 'CS471'].includes(c.code)
 		        )
 		    };
 		    
