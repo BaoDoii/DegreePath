@@ -231,32 +231,60 @@
 	        }
 	    }
 
-	    // Create checkboxes for each course
-	    function displayCheckboxes() {
-	        const container = document.getElementById('courseCheckboxes');
-	        container.innerHTML = ''; 
-
-	        allCourses.forEach(course => {
-	            const div = document.createElement('div');
-	            div.className = 'course-checkbox';
-
-	            const checkbox = document.createElement('input');
-	            checkbox.type = 'checkbox';
-	            checkbox.id = course.code;
-	            checkbox.value = course.code;
-
-	            const label = document.createElement('label');
-	            label.htmlFor = course.code;
-	            label.innerHTML = `
-	                <strong>${course.code}</strong><br>
-	                <small>${course.name} (${course.units} units)</small>
-	            `;
-
-	            div.appendChild(checkbox);
-	            div.appendChild(label);
-	            container.appendChild(div);
-	        });
-	    }
+	    // Create checkboxes for each course and groupings of lower div upper div and breadth
+		function displayCheckboxes() {
+		    const container = document.getElementById('courseCheckboxes');
+		    container.innerHTML = '';
+		    
+		    // Categorize courses
+		    const categories = {
+		        'Lower Division': allCourses.filter(c => 
+		            ['CS101', 'CS111', 'CS201', 'CS211', 'MATH130', 'MATH135', 'MATH250'].includes(c.code)
+		        ),
+		        'Upper Division Core': allCourses.filter(c => 
+		            ['CS301', 'CS311', 'CS321', 'CS401', 'CS411', 'CS421'].includes(c.code)
+		        ),
+		        'Upper Division Electives': allCourses.filter(c => 
+		            ['CS331', 'CS431', 'CS441', 'CS451', 'CS461', 'CS471'].includes(c.code)
+		        ),
+		        'Breadth': allCourses.filter(c => 
+		            ['CS230', 'CS460'].includes(c.code)
+		        )
+		    };
+		    
+		    // Display each category
+		    for (const [categoryName, courses] of Object.entries(categories)) {
+		        if (courses.length === 0) continue;
+		        
+		        // Category header
+		        const header = document.createElement('h3');
+		        header.textContent = categoryName;
+		        header.style.cssText = 'grid-column: 1 / -1; color: #0066cc; margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #0066cc; padding-bottom: 5px;';
+		        container.appendChild(header);
+		        
+		        // Course checkboxes
+		        courses.forEach(course => {
+		            const div = document.createElement('div');
+		            div.className = 'course-checkbox';
+		            
+		            const checkbox = document.createElement('input');
+		            checkbox.type = 'checkbox';
+		            checkbox.id = course.code;
+		            checkbox.value = course.code;
+		            
+		            const label = document.createElement('label');
+		            label.htmlFor = course.code;
+		            label.innerHTML = `
+		                <strong>${course.code}</strong><br>
+		                <small>${course.name} (${course.units} units)</small>
+		            `;
+		            
+		            div.appendChild(checkbox);
+		            div.appendChild(label);
+		            container.appendChild(div);
+		        });
+		    }
+		}
 
 	    // Generate semester plan
 	    async function generatePlan() {
