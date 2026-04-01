@@ -1,5 +1,7 @@
 # DegreePath
 
+[![Build Status](https://github.com/BaoDoii/DegreePath/actions/workflows/ci.yml/badge.svg)](https://github.com/BaoDoii/DegreePath/actions)
+
 A full-stack academic course planning system for CSUEB Computer Science students. Generates intelligent multi-semester graduation paths using graph-based prerequisite validation and priority ranking algorithms.
 
 ## Live Demo
