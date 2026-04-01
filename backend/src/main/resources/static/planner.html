@@ -239,7 +239,7 @@
 		    // Categorize courses
 		    const categories = {
 				'Math Courses': allCourses.filter(c =>
-					['MATH130', 'MATH131', 'MATH225']
+					['MATH130', 'MATH131', 'MATH225'].includes(c.code)
 				),
 		        'Lower Division': allCourses.filter(c => 
 		            ['CS101', 'CS201', 'CS211', 'CS221', 'CS230'].includes(c.code)
