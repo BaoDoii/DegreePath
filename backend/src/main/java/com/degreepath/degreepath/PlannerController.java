@@ -35,6 +35,11 @@ public class PlannerController {
 		return "DegreePath API is working!";
 	}
 	
+	@GetMapping("/health")
+	public String health() {
+		return "ok";
+	}
+	
 	@GetMapping("/courses")
 	public List<Course> getCourses(){
 		return allCourses;
