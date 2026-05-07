@@ -1,414 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>DegreePath - Computer Science Planner</title>
-	<style>
-		* {
-		    margin: 0;
-		    padding: 0;
-		    box-sizing: border-box;
-		}
-
-		body {
-		    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-		    background: #f5f5f5;
-		}
-
-		.container {
-		    max-width: 900px;
-		    margin: 0 auto;
-		    padding: 20px;
-		}
-
-		header {
-		    background: #1a1a1a;
-		    color: white;
-		    padding: 40px 20px;
-		    text-align: center;
-		    border-radius: 10px;
-		    margin-bottom: 30px;
-			border-bottom: 3px solid #0066cc;
-		}
-
-		header h1 {
-		    font-size: 2.5rem;
-		    margin-bottom: 10px;
-		}
-
-		.back-link {
-		    color: white;
-		    text-decoration: none;
-		    display: inline-block;
-		    margin-top: 15px;
-		    opacity: 0.9;
-		}
-		
-		.back-link:hover {
-		        opacity: 1;
-		    }
-
-	    .planner-section {
-	        background: white;
-	        padding: 30px;
-	        border-radius: 10px;
-	        margin-bottom: 30px;
-	        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	    }
-
-	    .planner-section h2 {
-	        color: #333;
-	        margin-bottom: 20px;
-	        font-size: 1.5rem;
-	    }
-
-	    .checkbox-grid {
-	        display: grid;
-	        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	        gap: 15px;
-	        margin-bottom: 30px;
-	    }
-
-	    .course-checkbox {
-	        background: #f8f9fa;
-	        padding: 15px;
-	        border-radius: 8px;
-	        border: 2px solid transparent;
-	        transition: all 0.2s;
-	    }
-
-	    .course-checkbox:hover {
-	        border-color: #0066cc;
-	    }
-
-	    .course-checkbox input {
-	        margin-right: 10px;
-	    }
-
-	    .course-checkbox label {
-	        cursor: pointer;
-	        display: flex;
-	        align-items: center;
-			gap: 10px;
-	    }
-
-	    #maxUnits {
-	        width: 100%;
-	        max-width: 200px;
-	        padding: 10px;
-	        font-size: 1.1rem;
-	        border: 2px solid #ddd;
-	        border-radius: 5px;
-	        margin-bottom: 20px;
-	    }
-		
-		#numGEs{
-			width: 100%;
-			max-width: 200px;
-			padding: 10px;
-			font-size: 1.1rem;
-			border: 2px solid #ddd;
-			border-radius: 5px;
-			margin-bottom: 20px;
-		}
-
-	    .btn-generate {
-	        background: #0066cc;
-	        color: white;
-	        border: none;
-	        padding: 15px 40px;
-	        font-size: 1.1rem;
-	        border-radius: 8px;
-	        cursor: pointer;
-	        font-weight: 600;
-	        transition: all 0.2s;
-	    }
-
-	    .btn-generate:hover {
-			background: #0052a3;
-	        transform: translateY(-2px);
-	    }
-
-	    .results-section {
-	        background: white;
-	        padding: 30px;
-	        border-radius: 10px;
-	        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	    }
-
-	    .course-card {
-	        background: #f8f9fa;
-	        padding: 20px;
-	        border-radius: 8px;
-	        margin-bottom: 15px;
-	        border-left: 4px solid #0066cc;
-	    }
-
-	    .course-card h3 {
-	        color: #0066cc;
-	        margin-bottom: 5px;
-	    }
-		
-		.disclaimer {
-		    margin-top: 15px;
-		    color: #888;
-		    font-size: 0.85rem;
-		    font-style: italic;
-		}
-
-	    #summary {
-	        background: #0066cc;
-	        color: white;
-	        padding: 20px;
-	        border-radius: 8px;
-	        margin-top: 20px;
-	        text-align: center;
-	        font-size: 1.2rem;
-	        font-weight: 600;
-	    }
-		
-		#workloadWarning{
-			color: #856464;
-			background: #fff3cd;
-			padding: 15px;
-			border-radius: 8px;
-			margin-top: 15px;
-			font-weight: 600;
-			display: none;
-		}
-
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DegreePath — Semester Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --g50: #EAF3DE; --g100: #C0DD97; --g400: #639922;
+            --g600: #3B6D11; --g800: #27500A; --g900: #173404;
+            --text: #1a1a1a; --text2: #555; --text3: #888;
+            --bg: #ffffff; --bg2: #f7f8fa;
+            --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.12);
+            --red-bg: #FCEBEB; --red-text: #A32D2D;
+            --amber-bg: #FAEEDA; --amber-text: #854F0B;
+        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg2); color: var(--text); line-height: 1.6; height: 100vh; display: flex; flex-direction: column; }
+        nav { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .logo { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; color: var(--g600); }
+        .nav-back { font-size: 13px; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.15s; }
+        .nav-back:hover { color: var(--g600); }
+        .planner-layout { display: grid; grid-template-columns: 260px 1fr; flex: 1; min-height: 0; overflow: hidden; }
+        .sidebar { background: var(--bg); border-right: 1px solid var(--border); overflow-y: auto; padding: 20px 16px; }
+        .sidebar-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; padding: 0 4px; }
+        .course-category { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--g400); letter-spacing: 0.08em; text-transform: uppercase; margin: 20px 0 8px; padding: 0 4px 6px; border-bottom: 1px solid var(--g100); }
+        .course-category:first-of-type { margin-top: 0; }
+        .course-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px; border-radius: 8px; cursor: pointer; transition: background 0.12s; margin-bottom: 1px; user-select: none; }
+        .course-row:hover { background: var(--bg2); }
+        .course-row.checked { background: var(--g50); }
+        .course-checkbox { width: 16px; height: 16px; border: 1.5px solid var(--border2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: background 0.12s, border-color 0.12s; }
+        .course-row.checked .course-checkbox { background: var(--g600); border-color: var(--g600); }
+        .course-checkbox svg { width: 10px; height: 10px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; display: none; }
+        .course-row.checked .course-checkbox svg { display: block; }
+        .course-info { flex: 1; min-width: 0; }
+        .course-code { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--g600); font-weight: 500; line-height: 1.3; }
+        .course-name { font-size: 12px; color: var(--text2); line-height: 1.4; margin-top: 1px; }
+        .course-units { font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; flex-shrink: 0; margin-top: 2px; }
+        .main-content { overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+        .controls-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+        .controls-card h2 { font-size: 15px; font-weight: 500; margin-bottom: 20px; color: var(--text); }
+        .controls-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .control-group label { display: block; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 7px; }
+        .control-group input { width: 100%; background: var(--bg2); border: 1px solid var(--border2); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border-radius: 8px; transition: border-color 0.15s; outline: none; }
+        .control-group input:focus { border-color: var(--g400); }
+        .control-hint { font-size: 11px; color: var(--text3); margin-top: 5px; }
+        .btn-generate { width: 100%; background: var(--g600); color: white; border: none; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.15s, transform 0.15s; }
+        .btn-generate:hover { background: var(--g800); transform: translateY(-1px); }
+        .btn-generate:active { transform: translateY(0); }
+        .loading-state { display: none; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 48px 24px; text-align: center; }
+        .loading-state.active { display: block; }
+        .spinner { width: 36px; height: 36px; border: 3px solid var(--g50); border-top-color: var(--g600); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-state p { font-size: 14px; color: var(--text2); }
+        .results-section { display: none; }
+        .results-section.active { display: flex; flex-direction: column; gap: 16px; }
+        .results-header { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; padding: 0 2px; }
+        .semester-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .semester-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--g50); }
+        .semester-title { font-size: 14px; font-weight: 500; color: var(--g900); }
+        .semester-units-pill { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--g600); background: white; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--g100); }
+        .semester-courses { padding: 12px 16px; }
+        .course-card { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 8px; margin-bottom: 6px; border: 1px solid var(--border); background: var(--bg2); transition: border-color 0.15s; }
+        .course-card:last-child { margin-bottom: 0; }
+        .course-card:hover { border-color: var(--g100); }
+        .cc-left { display: flex; align-items: center; gap: 12px; }
+        .cc-code { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--g600); min-width: 52px; font-weight: 500; }
+        .cc-name { font-size: 13px; color: var(--text); }
+        .cc-right { display: flex; align-items: center; gap: 8px; }
+        .cc-units { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text3); }
+        .workload-badge { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
+        .workload-heavy { background: var(--red-bg); color: var(--red-text); }
+        .workload-medium { background: var(--amber-bg); color: var(--amber-text); }
+        .workload-light { background: var(--g50); color: var(--g600); }
+        .workload-warning { margin: 10px 16px 12px; background: var(--amber-bg); border: 1px solid #FAC775; color: var(--amber-text); font-size: 12px; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px; }
+        .workload-warning svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
+        .empty-state { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 48px 24px; text-align: center; }
+        .empty-state h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
+        .empty-state p { font-size: 14px; color: var(--text2); }
+        .disclaimer { font-size: 12px; color: var(--text3); text-align: center; padding: 8px; }
+        .sidebar::-webkit-scrollbar, .main-content::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-track, .main-content::-webkit-scrollbar-track { background: transparent; }
+        .sidebar::-webkit-scrollbar-thumb, .main-content::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+        @media (max-width: 768px) {
+            .planner-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: visible; }
+            body { height: auto; }
+            .sidebar { max-height: 300px; border-right: none; border-bottom: 1px solid var(--border); }
+            .main-content { overflow-y: visible; }
+            .controls-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Semester Planner</h1>
-            <p>CSUEB Computer Science CS Curriculum</p>
-            <a href="/" class="back-link">← Back to Home</a>
-        </header>
 
-        <section class="planner-section">
-            <h2>Select Completed Courses</h2>
-            <div id="courseCheckboxes" class="checkbox-grid">
-                <!-- Checkboxes will be generated by JavaScript -->
+<nav>
+    <span class="logo">DegreePath</span>
+    <a href="/" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to home
+    </a>
+</nav>
+
+<div class="planner-layout">
+    <aside class="sidebar">
+        <div class="sidebar-title">Select completed courses</div>
+        <div id="courseCheckboxes"></div>
+    </aside>
+
+    <main class="main-content">
+        <div class="controls-card">
+            <h2>Configure your plan</h2>
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label for="maxUnits">Max units per semester</label>
+                    <input type="number" id="maxUnits" value="12" min="3" max="18">
+                </div>
+                <div class="control-group">
+                    <label for="numGEs">GE courses per semester</label>
+                    <input type="number" id="numGEs" value="0" min="0" max="4">
+                    <div class="control-hint">Each GE = 3 units</div>
+                </div>
+                <div class="control-group">
+                    <label for="numberOfSemesters">Number of semesters</label>
+                    <input type="number" id="numberOfSemesters" value="1" min="1" max="8">
+                </div>
             </div>
-
-            <h2>Maximum Units</h2>
-            <input type="number" id="maxUnits" value="8" min="3" max="18">
-			<h2>Number of GE Courses</h2>
-			<input type="number" id="numGEs" value="0" min="0" max="4">
-			<small style="color: #888; font-style:italic;">Each GE is assumed to be 3 units</small style>
-			<h2>Number of Semesters</h2>
-			<input type="number" id="numberOfSemesters" value ="1" min ="1" max="8">
-
             <button onclick="generatePlan()" class="btn-generate">
-                Generate Plan
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Generate plan
             </button>
-						
-        </section>
+        </div>
 
-        <section id="results" class="results-section" style="display: none;">
-            <h2>Your Semester Plan</h2>
+        <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>Generating your semester plan...</p>
+        </div>
+
+        <div id="resultsSection" class="results-section">
+            <div class="results-header">Generated plan</div>
             <div id="courseResults"></div>
-			<div id="workloadWarning"></div>
-            <div id="summary"></div>
-        </section>
-    </div>
-	
-	<script>
-	    let allCourses = [];
+            <div class="disclaimer">This is a planning tool — always confirm your plan with a CSUEB academic advisor.</div>
+        </div>
+    </main>
+</div>
 
-	    // Load courses when page loads
-	    async function loadCourses() {
-	        try {
-	            const response = await fetch('/api/courses');
-	            allCourses = await response.json();
-	            displayCheckboxes();
-	        } catch (error) {
-	            console.error('Error loading courses:', error);
-	            alert('Failed to load courses. Please refresh the page.');
-	        }
-	    }
+<script>
+    let allCourses = [];
 
-	    // Create checkboxes for each course and groupings of lower div upper div and breadth
-		function displayCheckboxes() {
-		    const container = document.getElementById('courseCheckboxes');
-		    container.innerHTML = '';
-		    
-		    // Categorize courses
-		    const categories = {
-				'Math Courses': allCourses.filter(c =>
-					['MATH130', 'MATH131', 'MATH225'].includes(c.code)
-				),
-		        'Lower Division': allCourses.filter(c => 
-		            ['CS101', 'CS201', 'CS211', 'CS221', 'CS230'].includes(c.code)
-		        ),
-		        'Upper Division': allCourses.filter(c => 
-		            ['CS301', 'CS311', 'CS321', 'CS401', 'CS411', 'CS413', 'CS421', 'CS441', 'STAT316'].includes(c.code)
-				),
-		        'Breadth': allCourses.filter(c => 
-		            ['CS351','CS431','CS453','CS455','CS461', 'CS471'].includes(c.code)
-		        )
-		    };
-		    
-		    // Display each category
-		    for (const [categoryName, courses] of Object.entries(categories)) {
-		        if (courses.length === 0) continue;
-		        
-		        // Category header
-		        const header = document.createElement('h3');
-		        header.textContent = categoryName;
-		        header.style.cssText = 'grid-column: 1 / -1; color: #0066cc; margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #0066cc; padding-bottom: 5px;';
-		        container.appendChild(header);
-		        
-		        // Course checkboxes
-		        courses.forEach(course => {
-		            const div = document.createElement('div');
-		            div.className = 'course-checkbox';
-		            
-		            const checkbox = document.createElement('input');
-		            checkbox.type = 'checkbox';
-		            checkbox.id = course.code;
-		            checkbox.value = course.code;
-		            
-		            const label = document.createElement('label');
-		            label.htmlFor = course.code;
-		            label.innerHTML = `
-		                <strong>${course.code}</strong><br>
-		                <small>${course.name} (${course.units} units)</small>
-		            `;
-		            
-		            div.appendChild(checkbox);
-		            div.appendChild(label);
-		            container.appendChild(div);
-		        });
-		    }
-		}
-		
+    async function loadCourses() {
+        try {
+            const response = await fetch('/api/courses');
+            allCourses = await response.json();
+            displayCheckboxes();
+        } catch (error) {
+            console.error('Error loading courses:', error);
+            alert('Failed to load courses. Please refresh the page.');
+        }
+    }
 
-	    // Generate semester plan
-	    async function generatePlan() {
-	        // Get selected courses
-	        const checkboxes = document.querySelectorAll('.course-checkbox input:checked');
-	        const completed = Array.from(checkboxes).map(cb => cb.value);
+    function displayCheckboxes() {
+        const container = document.getElementById('courseCheckboxes');
+        container.innerHTML = '';
 
-	        // Get max units
-	        const maxUnits = parseInt(document.getElementById('maxUnits').value);
-			const numGEs = parseInt(document.getElementById('numGEs').value);
-			const numberOfSemesters = parseInt(document.getElementById('numberOfSemesters').value);
+        const categories = {
+            'Math courses': allCourses.filter(c => ['MATH130', 'MATH131', 'MATH225'].includes(c.code)),
+            'Lower division': allCourses.filter(c => ['CS101', 'CS201', 'CS211', 'CS221', 'CS230'].includes(c.code)),
+            'Upper division': allCourses.filter(c => ['CS301', 'CS311', 'CS321', 'CS401', 'CS411', 'CS413', 'CS421', 'CS441', 'STAT316'].includes(c.code)),
+            'Breadth electives': allCourses.filter(c => ['CS351', 'CS431', 'CS453', 'CS455', 'CS461', 'CS471'].includes(c.code))
+        };
 
-	        // Validate input
-	        if (maxUnits < 3 || maxUnits > 18) {
-	            alert('Please enter a valid number of units (3-18)');
-	            return;
-	        }
-			
-			if (numGEs < 0 || numGEs > 4) {
-				alert('Please enter a valid number of GEs');
-				return;
-			}
-			
-			if(numGEs * 3 > maxUnits){
-				alert('Please enter a valid number of GEs')
-				return;
-			}
-			
-			
+        for (const [categoryName, courses] of Object.entries(categories)) {
+            if (courses.length === 0) continue;
 
-	        try {
-	            // Call API
-	            const response = await fetch('/api/multiplan', {
-	                method: 'POST',
-	                headers: { 'Content-Type': 'application/json' },
-	                body: JSON.stringify({
-	                    completed: completed,
-	                    maxUnits: maxUnits,
-						numGEs: numGEs,
-						numberOfSemesters: numberOfSemesters
-	                })
-	            });
+            const catLabel = document.createElement('div');
+            catLabel.className = 'course-category';
+            catLabel.textContent = categoryName;
+            container.appendChild(catLabel);
 
-	            const data = await response.json();
-	            displayResults(data);
-	        } catch (error) {
-	            console.error('Error generating plan:', error);
-	            alert('Failed to generate plan. Please try again.');
-	        }
-	    }
+            courses.forEach(course => {
+                const row = document.createElement('div');
+                row.className = 'course-row';
+                row.innerHTML = `
+                    <div class="course-checkbox">
+                        <svg viewBox="0 0 12 10"><polyline points="1 5 4.5 9 11 1"/></svg>
+                    </div>
+                    <div class="course-info">
+                        <div class="course-code">${course.code}</div>
+                        <div class="course-name">${course.name}</div>
+                    </div>
+                    <div class="course-units">${course.units}u</div>
+                `;
+                row.addEventListener('click', () => row.classList.toggle('checked'));
+                container.appendChild(row);
+            });
+        }
+    }
 
-	// Display results
-	    function displayResults(data) {
-	        const resultsSection = document.getElementById('results');
-	        const courseResults = document.getElementById('courseResults');
-	        const summary = document.getElementById('summary');
+    async function generatePlan() {
+        const checkedRows = document.querySelectorAll('.course-row.checked');
+        const completed = Array.from(checkedRows).map(row => row.querySelector('.course-code').textContent.trim());
 
-	 // Clear previous results
-	        courseResults.innerHTML = '';
-			
-	  // Display courses
-	  		data.semesters.forEach(semester => {
-				const semesterHeader = document.createElement('h2');
-				semesterHeader.textContent = `Semester ${semester.semesterNumber}`;
-				courseResults.appendChild(semesterHeader);
-				
-				//loop through courses in this semester
-				semester.courses.forEach(course => {
-					const card = document.createElement('div');
-					card.className = 'course-card';
-					card.innerHTML = `
-						<h3>${course.code} - ${course.name}</h3>
-						<p><strong>Units:</strong> ${course.units} | <strong>Workload:</strong> ${course.workload}</p>
-						<p><strong>Prerequisites:</strong> ${course.prerequisites.length > 0 ? course.prerequisites.join(', ') : 'None'}</p>
-					`;
-					courseResults.appendChild(card);		
-				});
-			//check heavy count, if 3+ then display warning
-				let heavyCount = 0;
-				semester.courses.forEach(course =>{
-					if(course.workload === "Heavy"){
-						heavyCount++;
-					}
-				});
-								
-				if(heavyCount >= 3){
-					const warning = document.createElement('div');
-					warning.style.cssText = 'color: #856464; background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: 600;';
-					warning.textContent = `Warning: This semester has ${heavyCount} Heavy courses`;
-					courseResults.appendChild(warning);
-				}
+        const maxUnits = parseInt(document.getElementById('maxUnits').value);
+        const numGEs = parseInt(document.getElementById('numGEs').value);
+        const numberOfSemesters = parseInt(document.getElementById('numberOfSemesters').value);
 
+        if (completed.length === 0) {
+            alert('Please select at least one completed course.');
+            return;
+        }
+        if (maxUnits < 3 || maxUnits > 18) {
+            alert('Please enter a valid number of units (3-18).');
+            return;
+        }
+        if (numGEs < 0 || numGEs > 4) {
+            alert('Please enter a valid number of GE courses (0-4).');
+            return;
+        }
+        if (numGEs * 3 > maxUnits) {
+            alert(`${numGEs} GE course${numGEs > 1 ? 's' : ''} require ${numGEs * 3} units, but your max is ${maxUnits}. Please adjust.`);
+            return;
+        }
 
-			 // Show results section
-					resultsSection.style.display = 'block';
-			  // Display summary
-			  const semesterSummary = document.createElement('div');
-			  semesterSummary.className = 'semester-summary'; 
-			  semesterSummary.style.cssText = 'background: #0066cc; color: white; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center; font-weight: 600;';
-			  semesterSummary.textContent = `Total Units: ${semester.totalUnits}`;
-			  courseResults.appendChild(semesterSummary);					
-			});
-	 // Scroll to results
-	        resultsSection.scrollIntoView({ behavior: 'smooth' });
-	    }
-//		The Full Flow:
-//		1. Clear old results
-//		2. For each SEMESTER:
-//		   a. Create header ("Semester 1")
-//		   b. For each COURSE in semester:
-//		      - Create card with course details
-//		      - Add to page
-//		   c. Count Heavy courses
-//		   d. If 3+, create warning and add to page
-//		   e. Create summary ("Total Units: 12")
-//		   f. Add summary to page
-//		3. Show results section
-//		4. Scroll to results
-		
-	// Load courses when page loads
-	    window.onload = loadCourses;
-	</script>
-	
+        const loadingState = document.getElementById('loadingState');
+        const resultsSection = document.getElementById('resultsSection');
+        loadingState.classList.add('active');
+        resultsSection.classList.remove('active');
+
+        try {
+            const response = await fetch('/api/multiplan', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ completed, maxUnits, numGEs, numberOfSemesters })
+            });
+            const data = await response.json();
+            displayResults(data);
+        } catch (error) {
+            console.error('Error generating plan:', error);
+            alert('Failed to generate plan. Please try again.');
+        } finally {
+            loadingState.classList.remove('active');
+        }
+    }
+
+    function getWorkloadClass(workload) {
+        if (workload === 'Heavy') return 'workload-heavy';
+        if (workload === 'Medium') return 'workload-medium';
+        return 'workload-light';
+    }
+
+    function displayResults(data) {
+        const courseResults = document.getElementById('courseResults');
+        const resultsSection = document.getElementById('resultsSection');
+        courseResults.innerHTML = '';
+
+        if (!data.semesters || data.semesters.length === 0) {
+            courseResults.innerHTML = `
+                <div class="empty-state">
+                    <h3>No plan generated</h3>
+                    <p>All eligible courses may already be completed, or try adjusting your unit limit or number of semesters.</p>
+                </div>
+            `;
+            resultsSection.classList.add('active');
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            return;
+        }
+
+        data.semesters.forEach(semester => {
+            const semCard = document.createElement('div');
+            semCard.className = 'semester-card';
+
+            let heavyCount = semester.courses.filter(c => c.workload === 'Heavy').length;
+
+            let coursesHTML = semester.courses.map(course => `
+                <div class="course-card">
+                    <div class="cc-left">
+                        <span class="cc-code">${course.code}</span>
+                        <span class="cc-name">${course.name}</span>
+                    </div>
+                    <div class="cc-right">
+                        <span class="cc-units">${course.units}u</span>
+                        <span class="workload-badge ${getWorkloadClass(course.workload)}">${course.workload}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            let warningHTML = '';
+            if (heavyCount >= 3) {
+                warningHTML = `
+                    <div class="workload-warning">
+                        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        This semester has ${heavyCount} heavy courses — consider spreading them out.
+                    </div>
+                `;
+            }
+
+            semCard.innerHTML = `
+                <div class="semester-header">
+                    <span class="semester-title">Semester ${semester.semesterNumber}</span>
+                    <span class="semester-units-pill">${semester.totalUnits} units</span>
+                </div>
+                <div class="semester-courses">${coursesHTML}</div>
+                ${warningHTML}
+            `;
+
+            courseResults.appendChild(semCard);
+        });
+
+        resultsSection.classList.add('active');
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.onload = loadCourses;
+</script>
+
 </body>
 </html>
-

@@ -3,170 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DegreePath</title>
+    <title>DegreePath — CSUEB CS Course Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --g50: #EAF3DE; --g100: #C0DD97; --g400: #639922;
+            --g600: #3B6D11; --g800: #27500A; --g900: #173404;
+            --text: #1a1a1a; --text2: #555; --text3: #888;
+            --bg: #ffffff; --bg2: #f7f8fa;
+            --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.12);
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .hero {
-            background: #1a1a1a;
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-			border-bottom: 3px solid #0066cc;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #0066cc;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s;
-        }
-
-        .btn:hover {
-			background: #0052a3;
-            transform: translateY(-2px);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            padding: 30px;
-            background: #f8f9fa;
-            border-radius: 8px;
-			transition: transform 0.3s;
-            text-align: center;
-			border-left: 4px solid #0066cc;
-        }
-
-        .feature-card h3 {
-            color: #0066cc;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .tech-stack {
-            background: #f8f9fa;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .tech-stack h2 {
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .tech-tag {
-            padding: 10px 20px;
-            background: white;
-            border-radius: 20px;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #333;
-            color: white;
-        }
-
-        footer a {
-            color: #0066cc;
-            text-decoration: none;
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg2); color: var(--text); line-height: 1.6; }
+        nav { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 40px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500; color: var(--g600); }
+        .nav-link { font-size: 14px; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.15s; }
+        .nav-link:hover { color: var(--g600); }
+        .hero { background: var(--g50); border-bottom: 1px solid var(--g100); padding: 80px 40px 72px; text-align: center; }
+        .badge { display: inline-flex; align-items: center; gap: 7px; background: white; border: 1px solid var(--g100); color: var(--g600); font-size: 12px; font-family: 'DM Mono', monospace; padding: 5px 12px; border-radius: 20px; margin-bottom: 28px; }
+        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g400); }
+        .hero h1 { font-size: 52px; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 18px; color: var(--g900); }
+        .hero h1 span { color: var(--g600); }
+        .hero p { font-size: 18px; color: var(--g800); max-width: 520px; margin: 0 auto 36px; line-height: 1.6; opacity: 0.85; }
+        .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--g600); color: white; padding: 13px 28px; border-radius: 10px; font-size: 15px; font-weight: 500; text-decoration: none; transition: background 0.15s, transform 0.15s; }
+        .btn-primary:hover { background: var(--g800); transform: translateY(-1px); }
+        .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--g600); padding: 13px 28px; border-radius: 10px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid var(--g100); transition: border-color 0.15s, transform 0.15s; }
+        .btn-ghost:hover { border-color: var(--g400); transform: translateY(-1px); }
+        .stats-row { display: flex; margin-top: 60px; border: 1px solid var(--g100); border-radius: 12px; overflow: hidden; max-width: 420px; margin-left: auto; margin-right: auto; background: white; }
+        .stat { flex: 1; padding: 18px 20px; text-align: center; border-right: 1px solid var(--g100); }
+        .stat:last-child { border-right: none; }
+        .stat-num { font-family: 'DM Mono', monospace; font-size: 24px; font-weight: 500; color: var(--g600); line-height: 1; margin-bottom: 4px; }
+        .stat-label { font-size: 12px; color: var(--g400); }
+        .section { max-width: 900px; margin: 0 auto; padding: 72px 40px; }
+        .section-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--g400); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 36px; text-align: center; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .feature-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: border-color 0.2s, transform 0.2s; }
+        .feature-card:hover { border-color: var(--g100); transform: translateY(-2px); }
+        .feature-icon { width: 40px; height: 40px; background: var(--g50); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; color: var(--g600); }
+        .feature-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+        .feature-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 10px; color: var(--text); }
+        .feature-card p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+        .stack-section { background: var(--g50); border-top: 1px solid var(--g100); border-bottom: 1px solid var(--g100); padding: 40px; text-align: center; }
+        .stack-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--g400); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+        .stack-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .stack-tag { background: white; border: 1px solid var(--g100); color: var(--g600); font-family: 'DM Mono', monospace; font-size: 12px; padding: 7px 14px; border-radius: 8px; }
+        footer { padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text3); border-top: 1px solid var(--border); background: var(--bg); }
+        footer a { color: var(--g600); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            nav { padding: 0 20px; } .hero { padding: 56px 24px 52px; } .hero h1 { font-size: 36px; }
+            .hero p { font-size: 16px; } .section { padding: 52px 24px; } footer { flex-direction: column; gap: 8px; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>DegreePath</h1>
-        <p>Smart Course Planning for CSUEB Computer Science Students</p>
-        <a href="/planner.html" class="btn">Start Planning →</a>
+<nav>
+    <span class="logo">DegreePath</span>
+    <a href="https://github.com/BaoDoii/DegreePath" target="_blank" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+    </a>
+</nav>
+<div class="hero">
+    <div class="badge"><span class="badge-dot"></span>CSUEB Computer Science — free tool</div>
+    <h1>Plan your degree.<br><span>Stop guessing.</span></h1>
+    <p>Automatically validates prerequisites and generates semester-by-semester graduation paths for CSUEB CS students.</p>
+    <div class="hero-actions">
+        <a href="/planner.html" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Start planning
+        </a>
+        <a href="https://github.com/BaoDoii/DegreePath" target="_blank" class="btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub
+        </a>
     </div>
-
-    <div class="container">
-        <h2 style="text-align: center; margin-bottom: 20px;">How It Works</h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; color: #666;">
-            DegreePath helps you plan your semesters by automatically checking prerequisites and generating 
-            balanced course schedules based on your constraints.
-        </p>
-
-        <div class="features">
-            <div class="feature-card">
-                <h3>Prerequisite Validation</h3>
-                <p>Automatically checks if you meet course requirements before suggesting them.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3>Smart Planning</h3>
-                <p>Generates semester plans that fit your unit limits and completed courses.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3>Complete CS Curriculum</h3>
-                <p>Supports 20+ CS courses including lower-divison, upper-division, major electives, and General Education (coming soon)</p>
-            </div>
+    <div class="stats-row">
+        <div class="stat"><div class="stat-num">23</div><div class="stat-label">CS courses</div></div>
+        <div class="stat"><div class="stat-num">8</div><div class="stat-label">Max semesters</div></div>
+        <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
+    </div>
+</div>
+<div class="section">
+    <div class="section-label">How it works</div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><line x1="7" y1="12" x2="17" y2="5.5"/><line x1="7" y1="12" x2="17" y2="18.5"/></svg></div>
+            <h3>Prerequisite validation</h3>
+            <p>Uses graph-based algorithms to check every course requirement automatically. You'll only see courses you're actually eligible to take.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <h3>Smart priority ranking</h3>
+            <p>Courses that unlock the most future options are scheduled first. So you're always making the most progress toward graduation.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <h3>Multi-semester planning</h3>
+            <p>Generate a complete 1–8 semester graduation roadmap. Set your max units per semester and let DegreePath do the rest.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <h3>Workload warnings</h3>
+            <p>Automatically flags semesters with too many heavy courses so you can spread out the workload before it's too late to change.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <h3>GE placeholder support</h3>
+            <p>Add General Education courses as placeholders in your plan. Each GE is counted as 3 units toward your semester total.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>Full CS curriculum</h3>
+            <p>Covers all 23 CSUEB CS courses — math prerequisites, lower division, upper division core, and breadth electives.</p>
         </div>
     </div>
-
-    <div class="tech-stack">
-        <div class="container">
-            <h2>Built With</h2>
-            <div class="tech-tags">
-                <span class="tech-tag">Java 17</span>
-                <span class="tech-tag">Spring Boot</span>
-                <span class="tech-tag">REST API</span>
-                <span class="tech-tag">Docker</span>
-                <span class="tech-tag">Maven</span>
-            </div>
-        </div>
+</div>
+<div class="stack-section">
+    <div class="stack-label">Built with</div>
+    <div class="stack-tags">
+        <span class="stack-tag">Java 17</span>
+        <span class="stack-tag">Spring Boot</span>
+        <span class="stack-tag">REST API</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">Maven</span>
     </div>
-
-    <footer>
-        <p>Built by Brian Ha | <a href="https://github.com/BaoDoii/DegreePath" target="_blank">View on GitHub</a></p>
-    </footer>
+</div>
+<footer>
+    <span>Built by Brian Ha</span>
+    <a href="https://github.com/BaoDoii/DegreePath" target="_blank">View on GitHub</a>
+</footer>
 </body>
 </html>
