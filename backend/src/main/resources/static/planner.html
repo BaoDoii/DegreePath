@@ -26,7 +26,7 @@
         }
         body { font-family: 'DM Sans', sans-serif; background: var(--bg2); color: var(--text); line-height: 1.6; height: 100vh; display: flex; flex-direction: column; }
         nav { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-        .logo { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; color: var(--g600); }
+        .logo { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; color: var(--g600); display: flex; align-items: center; gap: 8px}
         .nav-back { font-size: 13px; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.15s; }
         .nav-back:hover { color: var(--g600); }
         .planner-layout { display: grid; grid-template-columns: 30% 70%; flex: 1; min-height: 0; overflow: hidden; }
@@ -69,6 +69,7 @@
         .semester-title { font-size: 14px; font-weight: 500; color: var(--g900); }
         .semester-units-pill { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--g600); background: white; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--g100); }
         .semester-courses { padding: 12px 16px; }
+		.site-favicon{width: 22px; height: 22px; object-fit: contain; display: block; flex-shrink: 0;}
         .course-card { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 8px; margin-bottom: 6px; border: 1px solid var(--border); background: var(--bg2); transition: border-color 0.15s; }
         .course-card:last-child { margin-bottom: 0; }
         .course-card:hover { border-color: var(--g100); }
@@ -103,7 +104,10 @@
 <body>
 
 <nav>
-    <span class="logo">DegreePath</span>
+	<span class="logo">
+		<img src="/favicon-32x32.png" alt="DegreePath logo" class ="site-favicon">
+		<span>DegreePath</span>
+	</span>
     <a href="/" class="nav-back">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to home
