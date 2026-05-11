@@ -8,11 +8,11 @@ A full-stack academic course planning system for CSUEB Computer Science students
 **[Try it here →](https://degreepath.onrender.com)**
 
 ## Screenshots
-<img width="1114" height="920" alt="home" src="https://github.com/user-attachments/assets/cc6466bb-315c-42c6-a373-5323f253551f" />
+<img width="565" height="798" alt="Home2" src="https://github.com/user-attachments/assets/30676ccf-9be3-492b-88aa-4fd750ec34f9" />
 
-<img width="583" height="1080" alt="planner" src="https://github.com/user-attachments/assets/4356a1c3-3582-4143-8800-bc426c5ead1b" />
 
-<img width="650" height="954" alt="example" src="https://github.com/user-attachments/assets/b25cceaa-af30-4891-a9e9-26746fa3569d" />
+<img width="1918" height="824" alt="planner2" src="https://github.com/user-attachments/assets/074433a0-2295-4183-83ee-d6e6fd40e7a0" />
+
 
 ## Features
 
