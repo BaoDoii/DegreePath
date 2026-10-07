@@ -2,20 +2,10 @@ package com.degreepath.degreepath;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class SemesterPlanner {
-	
-	//count how many courses depend on the course as a prereq
-	private static int countDependents(Course course, List<Course> allCourses) {
-		int count = 0;
-		
-		for(Course c: allCourses) {
-			if(c.getPrerequisites().contains(course.getCode())) {
-				count++;
-			}
-		}
-		return count;
-	}
 	
 	public static List<Course> generateSemester(List<String> completedCourses, List<Course> allCourses, int maxUnits, int numGEs){
 		List<Course> selectedCourses = new ArrayList<>();
@@ -36,10 +26,17 @@ public class SemesterPlanner {
 			
 		}
 		
+		//build the prereq graph, then score each available course by how many courses it unlocks (direct + indirect)
+		DependencyGraph graph = new DependencyGraph(allCourses);
+		Map<String, Integer> unlockCounts = new HashMap<>();
+		for(Course c : availableCourses) {
+			unlockCounts.put(c.getCode(), graph.countUnlocked(c.getCode()));
+		}
+		
 		//sort by priority
 		availableCourses.sort((a,b) -> {
-			int aCount = countDependents(a, allCourses);
-			int bCount = countDependents(b, allCourses);
+			int aCount = unlockCounts.get(a.getCode());
+			int bCount = unlockCounts.get(b.getCode());
 			return Integer.compare(bCount,aCount);
 		});
 		
