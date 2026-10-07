@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Planner | DegreePath</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+<nav>
+<a class="logo" href="/"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M9 11 L30 20 L11 31" stroke="#0F1A34" stroke-width="2.5" stroke-linejoin="round"/><circle cx="9" cy="11" r="5.5" fill="#FF5B2E" stroke="#0F1A34" stroke-width="2.5"/><circle cx="30" cy="20" r="5.5" fill="#FFD84D" stroke="#0F1A34" stroke-width="2.5"/><circle cx="11" cy="31" r="5.5" fill="#fff" stroke="#0F1A34" stroke-width="2.5"/></svg> DegreePath</a>
+<a class="navlink" href="/">&larr; Back to home</a>
+</nav>
+
+<div class="page-title">
+<h1>Build your plan</h1>
+<p>Tick what you've finished, set your load, and hit generate.</p>
+</div>
+
+<div class="layout">
+<aside class="card sidebar">
+<h2>1. What you've finished</h2>
+<div id="courseCheckboxes"></div>
+</aside>
+
+<main class="main-content">
+<div class="card controls-card">
+<h2>2. Set your load</h2>
+<div class="controls-grid">
+<div class="control-group">
+<label for="maxUnits">Max units per semester</label>
+<div class="stepper"><button type="button" aria-label="Fewer units" onclick="bump('maxUnits',-1)">&minus;</button><input type="number" id="maxUnits" value="12" min="3" max="18"><button type="button" aria-label="More units" onclick="bump('maxUnits',1)">+</button></div>
+</div>
+<div class="control-group">
+<label for="numGEs">GE courses per semester</label>
+<div class="stepper"><button type="button" aria-label="Fewer GEs" onclick="bump('numGEs',-1)">&minus;</button><input type="number" id="numGEs" value="0" min="0" max="4"><button type="button" aria-label="More GEs" onclick="bump('numGEs',1)">+</button></div>
+<div class="control-hint">Each GE = 3 units</div>
+</div>
+<div class="control-group">
+<label for="numberOfSemesters">Number of semesters</label>
+<div class="stepper"><button type="button" aria-label="Fewer semesters" onclick="bump('numberOfSemesters',-1)">&minus;</button><input type="number" id="numberOfSemesters" value="1" min="1" max="8"><button type="button" aria-label="More semesters" onclick="bump('numberOfSemesters',1)">+</button></div>
+</div>
+</div>
+<button class="btn btn-generate" onclick="generatePlan()">3. Generate my plan &rarr;</button>
+</div>
+
+<div id="loadingState" class="loading-state"><div class="spinner"></div><p>Generating your semester plan...</p></div>
+
+<div id="resultsSection" class="results-section">
+<div class="results-header">Your plan</div>
+<div id="courseResults"></div>
+<div class="disclaimer">This is a planning tool. Always confirm your plan with a CSUEB academic advisor.</div>
+</div>
+</main>
+</div>
+</div>
+
+<script>
+    let allCourses = [];
+
+    async function loadCourses() {
+        try {
+            const response = await fetch('/api/courses');
+            allCourses = await response.json();
+            displayCheckboxes();
+        } catch (error) {
+            console.error('Error loading courses:', error);
+            alert('Failed to load courses. Please refresh the page.');
+        }
+    }
+
+    function displayCheckboxes() {
+        const container = document.getElementById('courseCheckboxes');
+        container.innerHTML = '';
+
+        const categories = {
+            'Math courses': allCourses.filter(c => ['MATH130', 'MATH131', 'MATH225'].includes(c.code)),
+            'Lower division': allCourses.filter(c => ['CS101', 'CS201', 'CS211', 'CS221', 'CS230'].includes(c.code)),
+            'Upper division': allCourses.filter(c => ['CS301', 'CS311', 'CS321', 'CS401', 'CS411', 'CS413', 'CS421', 'CS441', 'STAT316'].includes(c.code)),
+            'Breadth electives': allCourses.filter(c => ['CS351', 'CS431', 'CS453', 'CS455', 'CS461', 'CS471'].includes(c.code))
+        };
+
+        for (const [categoryName, courses] of Object.entries(categories)) {
+            if (courses.length === 0) continue;
+
+            const catLabel = document.createElement('div');
+            catLabel.className = 'course-category';
+            catLabel.textContent = categoryName;
+            container.appendChild(catLabel);
+
+            courses.forEach(course => {
+                const row = document.createElement('div');
+                row.className = 'course-row';
+                row.innerHTML = `
+                    <div class="course-checkbox">
+                        <svg viewBox="0 0 12 10"><polyline points="1 5 4.5 9 11 1"/></svg>
+                    </div>
+                    <div class="course-info">
+                        <div class="course-code">${course.code}</div>
+                        <div class="course-name">${course.name}</div>
+                    </div>
+                    <div class="course-units">${course.units}u</div>
+                `;
+                row.addEventListener('click', () => row.classList.toggle('checked'));
+                container.appendChild(row);
+            });
+        }
+    }
+
+    async function generatePlan() {
+        const checkedRows = document.querySelectorAll('.course-row.checked');
+        const completed = Array.from(checkedRows).map(row => row.querySelector('.course-code').textContent.trim());
+
+        const maxUnits = parseInt(document.getElementById('maxUnits').value);
+        const numGEs = parseInt(document.getElementById('numGEs').value);
+        const numberOfSemesters = parseInt(document.getElementById('numberOfSemesters').value);
+
+        if (completed.length === 0) {
+            alert('Please select at least one completed course.');
+            return;
+        }
+        if (maxUnits < 3 || maxUnits > 18) {
+            alert('Please enter a valid number of units (3-18).');
+            return;
+        }
+        if (numGEs < 0 || numGEs > 4) {
+            alert('Please enter a valid number of GE courses (0-4).');
+            return;
+        }
+        if (numGEs * 3 > maxUnits) {
+            alert(`${numGEs} GE course${numGEs > 1 ? 's' : ''} require ${numGEs * 3} units, but your max is ${maxUnits}. Please adjust.`);
+            return;
+        }
+
+        const loadingState = document.getElementById('loadingState');
+        const resultsSection = document.getElementById('resultsSection');
+        loadingState.classList.add('active');
+        resultsSection.classList.remove('active');
+
+        try {
+            const response = await fetch('/api/multiplan', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ completed, maxUnits, numGEs, numberOfSemesters })
+            });
+            const data = await response.json();
+            displayResults(data);
+        } catch (error) {
+            console.error('Error generating plan:', error);
+            alert('Failed to generate plan. Please try again.');
+        } finally {
+            loadingState.classList.remove('active');
+        }
+    }
+
+    function getWorkloadClass(workload) {
+        if (workload === 'Heavy') return 'workload-heavy';
+        if (workload === 'Medium') return 'workload-medium';
+        return 'workload-light';
+    }
+
+    function displayResults(data) {
+        const courseResults = document.getElementById('courseResults');
+        const resultsSection = document.getElementById('resultsSection');
+        courseResults.innerHTML = '';
+
+        if (!data.semesters || data.semesters.length === 0) {
+            courseResults.innerHTML = `
+                <div class="empty-state">
+                    <h3>No plan generated</h3>
+                    <p>All eligible courses may already be completed, or try adjusting your unit limit or number of semesters.</p>
+                </div>
+            `;
+            resultsSection.classList.add('active');
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            return;
+        }
+
+        data.semesters.forEach(semester => {
+            const semCard = document.createElement('div');
+            semCard.className = 'semester-card';
+
+            let heavyCount = semester.courses.filter(c => c.workload === 'Heavy').length;
+
+            let coursesHTML = semester.courses.map(course => `
+                <div class="course-card">
+                    <div class="cc-left">
+                        <span class="cc-code">${course.code}</span>
+                        <span class="cc-name">${course.name}</span>
+                    </div>
+                    <div class="cc-right">
+                        <span class="cc-units">${course.units}u</span>
+                        <span class="workload-badge ${getWorkloadClass(course.workload)}">${course.workload}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            let warningHTML = '';
+            if (heavyCount >= 4) {
+                warningHTML = `
+                    <div class="workload-warning">
+                        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        This semester has ${heavyCount} heavy courses — consider spreading them out.
+                    </div>
+                `;
+            }
+
+            semCard.innerHTML = `
+                <div class="semester-header">
+                    <span class="semester-title">Semester ${semester.semesterNumber}</span>
+                    <span class="semester-units-pill">${semester.totalUnits} units</span>
+                </div>
+                <div class="semester-courses">${coursesHTML}</div>
+                ${warningHTML}
+            `;
+
+            courseResults.appendChild(semCard);
+        });
+
+        resultsSection.classList.add('active');
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.onload = loadCourses;
+
+    //+/- buttons next to the number inputs, stays inside each input's min and max
+    function bump(id, change) {
+        const input = document.getElementById(id);
+        const next = parseInt(input.value || 0) + change;
+        input.value = Math.min(parseInt(input.max), Math.max(parseInt(input.min), next));
+    }
+</script>
+</body>
+</html>
