@@ -172,7 +172,7 @@ Generates a multi-semester plan
 
 **Brian Ha**
 - GitHub: [@BaoDoii](https://github.com/BaoDoii)
-- LinkedIn: [linkedin.com/in/brian-ha-a9060724a](https://www.linkedin.com/in/brian-ha-a9060724a)
+- LinkedIn: [https://www.linkedin.com/in/brianha-baodoi]([https://www.linkedin.com/in/brian-ha-a9060724a](https://www.linkedin.com/in/brianha-baodoi))
 
 ## License
 
