@@ -1,160 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DegreePath — Semester Planner</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel= "icon" type ="image/x-icon" href="/favicon.ico">
-	<link rel= "icon" type ="image/x-icon" href="/favicon-16x16png">
-	<link rel= "icon" type ="image/x-icon" href="/favicon-32x32.png">
-	<link rel= "icon" type ="image/x-icon" href="/apple-touch-icon.png">
-	<link rel= "icon" type ="image/x-icon" href="/android-chrome-512x512.png">
-	<link rel= "icon" type ="image/x-icon" href="/android-192x192.png">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --g50: #EAF3DE; --g100: #C0DD97; --g400: #639922;
-            --g600: #3B6D11; --g800: #27500A; --g900: #173404;
-            --text: #1a1a1a; --text2: #555; --text3: #888;
-            --bg: #ffffff; --bg2: #f7f8fa;
-            --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.12);
-            --red-bg: #FCEBEB; --red-text: #A32D2D;
-            --amber-bg: #FAEEDA; --amber-text: #854F0B;
-        }
-        body { font-family: 'DM Sans', sans-serif; background: var(--bg2); color: var(--text); line-height: 1.6; height: 100vh; display: flex; flex-direction: column; }
-        nav { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-        .logo { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; color: var(--g600); display: flex; align-items: center; gap: 8px}
-        .nav-back { font-size: 13px; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.15s; }
-        .nav-back:hover { color: var(--g600); }
-        .planner-layout { display: grid; grid-template-columns: 30% 70%; flex: 1; min-height: 0; overflow: hidden; }
-        .sidebar { background: var(--bg); border-right: 1px solid var(--border); overflow-y: auto; padding: 20px 16px; }
-        .sidebar-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; padding: 0 4px; }
-        .course-category { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--g400); letter-spacing: 0.08em; text-transform: uppercase; margin: 20px 0 8px; padding: 0 4px 6px; border-bottom: 1px solid var(--g100); }
-        .course-category:first-of-type { margin-top: 0; }
-        .course-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px; border-radius: 8px; cursor: pointer; transition: background 0.12s; margin-bottom: 1px; user-select: none; }
-        .course-row:hover { background: var(--bg2); }
-        .course-row.checked { background: var(--g50); }
-        .course-checkbox { width: 16px; height: 16px; border: 1.5px solid var(--border2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: background 0.12s, border-color 0.12s; }
-        .course-row.checked .course-checkbox { background: var(--g600); border-color: var(--g600); }
-        .course-checkbox svg { width: 10px; height: 10px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; display: none; }
-        .course-row.checked .course-checkbox svg { display: block; }
-        .course-info { flex: 1; min-width: 0; }
-        .course-code { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--g600); font-weight: 500; line-height: 1.3; }
-        .course-name { font-size: 14px; color: var(--text2); line-height: 1.4; margin-top: 1px; }
-        .course-units { font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; flex-shrink: 0; margin-top: 2px; }
-        .main-content { overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
-        .controls-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
-        .controls-card h2 { font-size: 15px; font-weight: 500; margin-bottom: 20px; color: var(--text); }
-        .controls-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
-        .control-group label { display: block; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 7px; }
-        .control-group input { width: 100%; background: var(--bg2); border: 1px solid var(--border2); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border-radius: 8px; transition: border-color 0.15s; outline: none; }
-        .control-group input:focus { border-color: var(--g400); }
-        .control-hint { font-size: 11px; color: var(--text3); margin-top: 5px; }
-        .btn-generate { width: 100%; background: var(--g600); color: white; border: none; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.15s, transform 0.15s; }
-        .btn-generate:hover { background: var(--g800); transform: translateY(-1px); }
-        .btn-generate:active { transform: translateY(0); }
-        .loading-state { display: none; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 48px 24px; text-align: center; }
-        .loading-state.active { display: block; }
-        .spinner { width: 36px; height: 36px; border: 3px solid var(--g50); border-top-color: var(--g600); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-state p { font-size: 14px; color: var(--text2); }
-        .results-section { display: none; }
-        .results-section.active { display: flex; flex-direction: column; gap: 16px; }
-        .results-header { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; padding: 0 2px; }
-        .semester-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-        .semester-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--g50); }
-        .semester-title { font-size: 14px; font-weight: 500; color: var(--g900); }
-        .semester-units-pill { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--g600); background: white; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--g100); }
-        .semester-courses { padding: 12px 16px; }
-		.site-favicon{width: 22px; height: 22px; object-fit: contain; display: block; flex-shrink: 0;}
-        .course-card { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 8px; margin-bottom: 6px; border: 1px solid var(--border); background: var(--bg2); transition: border-color 0.15s; }
-        .course-card:last-child { margin-bottom: 0; }
-        .course-card:hover { border-color: var(--g100); }
-        .cc-left { display: flex; align-items: center; gap: 12px; }
-        .cc-code { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--g600); min-width: 52px; font-weight: 500; }
-        .cc-name { font-size: 14px; color: var(--text); }
-        .cc-right { display: flex; align-items: center; gap: 8px; }
-        .cc-units { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text3); }
-        .workload-badge { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
-        .workload-heavy { background: var(--red-bg); color: var(--red-text); }
-        .workload-medium { background: var(--amber-bg); color: var(--amber-text); }
-        .workload-light { background: var(--g50); color: var(--g600); }
-        .workload-warning { margin: 10px 16px 12px; background: var(--amber-bg); border: 1px solid #FAC775; color: var(--amber-text); font-size: 12px; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px; }
-        .workload-warning svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
-        .empty-state { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 48px 24px; text-align: center; }
-        .empty-state h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
-        .empty-state p { font-size: 14px; color: var(--text2); }
-        .disclaimer { font-size: 12px; color: var(--text3); text-align: center; padding: 8px; }
-        .sidebar::-webkit-scrollbar, .main-content::-webkit-scrollbar { width: 4px; }
-        .sidebar::-webkit-scrollbar-track, .main-content::-webkit-scrollbar-track { background: transparent; }
-        .sidebar::-webkit-scrollbar-thumb, .main-content::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
-		
-        @media (max-width: 768px) {
-            .planner-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: visible; }
-            body { height: auto; }
-            .sidebar { max-height: 300px; border-right: none; border-bottom: 1px solid var(--border); }
-            .main-content { overflow-y: visible; }
-            .controls-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<title>Planner | DegreePath</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
+<div class="wrap">
 <nav>
-	<span class="logo">
-		<img src="/favicon-32x32.png" alt="DegreePath logo" class ="site-favicon">
-		<span>DegreePath</span>
-	</span>
-    <a href="/" class="nav-back">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        Back to home
-    </a>
+<a class="logo" href="/"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M9 11 L30 20 L11 31" stroke="#0F1A34" stroke-width="2.5" stroke-linejoin="round"/><circle cx="9" cy="11" r="5.5" fill="#FF5B2E" stroke="#0F1A34" stroke-width="2.5"/><circle cx="30" cy="20" r="5.5" fill="#FFD84D" stroke="#0F1A34" stroke-width="2.5"/><circle cx="11" cy="31" r="5.5" fill="#fff" stroke="#0F1A34" stroke-width="2.5"/></svg> DegreePath</a>
+<a class="navlink" href="/">&larr; Back to home</a>
 </nav>
 
-<div class="planner-layout">
-    <aside class="sidebar">
-        <div class="sidebar-title">Select completed courses</div>
-        <div id="courseCheckboxes"></div>
-    </aside>
+<div class="page-title">
+<h1>Build your plan</h1>
+<p>Tick what you've finished, set your load, and hit generate.</p>
+</div>
 
-    <main class="main-content">
-        <div class="controls-card">
-            <h2>Configure your plan</h2>
-            <div class="controls-grid">
-                <div class="control-group">
-                    <label for="maxUnits">Max units per semester</label>
-                    <input type="number" id="maxUnits" value="12" min="3" max="18">
-                </div>
-                <div class="control-group">
-                    <label for="numGEs">GE courses per semester</label>
-                    <input type="number" id="numGEs" value="0" min="0" max="4">
-                    <div class="control-hint">Each GE = 3 units</div>
-                </div>
-                <div class="control-group">
-                    <label for="numberOfSemesters">Number of semesters</label>
-                    <input type="number" id="numberOfSemesters" value="1" min="1" max="8">
-                </div>
-            </div>
-            <button onclick="generatePlan()" class="btn-generate">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                Generate plan
-            </button>
-        </div>
+<div class="layout">
+<aside class="card sidebar">
+<h2>1. What you've finished</h2>
+<div id="courseCheckboxes"></div>
+</aside>
 
-        <div id="loadingState" class="loading-state">
-            <div class="spinner"></div>
-            <p>Generating your semester plan...</p>
-        </div>
+<main class="main-content">
+<div class="card controls-card">
+<h2>2. Set your load</h2>
+<div class="controls-grid">
+<div class="control-group">
+<label for="maxUnits">Max units per semester</label>
+<div class="stepper"><button type="button" aria-label="Fewer units" onclick="bump('maxUnits',-1)">&minus;</button><input type="number" id="maxUnits" value="12" min="3" max="18"><button type="button" aria-label="More units" onclick="bump('maxUnits',1)">+</button></div>
+</div>
+<div class="control-group">
+<label for="numGEs">GE courses per semester</label>
+<div class="stepper"><button type="button" aria-label="Fewer GEs" onclick="bump('numGEs',-1)">&minus;</button><input type="number" id="numGEs" value="0" min="0" max="4"><button type="button" aria-label="More GEs" onclick="bump('numGEs',1)">+</button></div>
+<div class="control-hint">Each GE = 3 units</div>
+</div>
+<div class="control-group">
+<label for="numberOfSemesters">Number of semesters</label>
+<div class="stepper"><button type="button" aria-label="Fewer semesters" onclick="bump('numberOfSemesters',-1)">&minus;</button><input type="number" id="numberOfSemesters" value="1" min="1" max="8"><button type="button" aria-label="More semesters" onclick="bump('numberOfSemesters',1)">+</button></div>
+</div>
+</div>
+<button class="btn btn-generate" onclick="generatePlan()">3. Generate my plan &rarr;</button>
+</div>
 
-        <div id="resultsSection" class="results-section">
-            <div class="results-header">Generated plan</div>
-            <div id="courseResults"></div>
-            <div class="disclaimer">This is a planning tool — always confirm your plan with a CSUEB academic advisor.</div>
-        </div>
-    </main>
+<div id="loadingState" class="loading-state"><div class="spinner"></div><p>Generating your semester plan...</p></div>
+
+<div id="resultsSection" class="results-section">
+<div class="results-header">Your plan</div>
+<div id="courseResults"></div>
+<div class="disclaimer">This is a planning tool. Always confirm your plan with a CSUEB academic advisor.</div>
+</div>
+</main>
+</div>
 </div>
 
 <script>
@@ -324,7 +229,13 @@
     }
 
     window.onload = loadCourses;
-</script>
 
+    //+/- buttons next to the number inputs, stays inside each input's min and max
+    function bump(id, change) {
+        const input = document.getElementById(id);
+        const next = parseInt(input.value || 0) + change;
+        input.value = Math.min(parseInt(input.max), Math.max(parseInt(input.min), next));
+    }
+</script>
 </body>
 </html>
