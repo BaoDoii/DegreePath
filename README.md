@@ -8,10 +8,12 @@ A full-stack course planning app for CSUEB Computer Science students. It generat
 **[Try it here →](https://degreepath.onrender.com)**
 
 ## Screenshots
-<img width="565" height="798" alt="Home2" src="https://github.com/user-attachments/assets/30676ccf-9be3-492b-88aa-4fd750ec34f9" />
+<img width="565" height="798" alt="Home2" src="<img width="837" height="1075" alt="HomeNew" src="https://github.com/user-attachments/assets/dbbae84b-b1d2-440e-971d-a8b3bb904a76" />
+" />
 
 
-<img width="1918" height="824" alt="planner2" src="https://github.com/user-attachments/assets/074433a0-2295-4183-83ee-d6e6fd40e7a0" />
+<img width="1918" height="824" alt="planner2" src="<img width="837" height="1080" alt="PlannerNew" src="https://github.com/user-attachments/assets/0cb2b732-c6cd-41c2-a2b0-92eaaccc9891" />
+" />
 
 
 ## Features
